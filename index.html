@@ -137,12 +137,19 @@ button{cursor:pointer;border:none;background:none;}
   margin-top:16px;display:flex;flex-direction:column;gap:9px;position:relative;z-index:1;
 }
 .cmp-row{display:flex;align-items:center;gap:10px;font-size:12px;}
-.cmp-row .cl{width:54px;color:#C9BCA8;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:600;}
-.cmp-track{flex:1;height:9px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;}
-.cmp-fill{height:100%;border-radius:6px;}
-.cmp-row .cv{width:78px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+.cmp-row .cl{width:54px;flex:none;color:#C9BCA8;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:600;}
+.cmp-track{flex:1 1 auto;min-width:0;height:10px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden;}
+.cmp-fill{display:block;height:100%;border-radius:6px;min-width:6px;}
+.cmp-fill.cr{background:#5BA77E;}
+.cmp-fill.db{background:#C9764C;}
+.cmp-row .cv{width:78px;flex:none;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
 
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:14px 16px 4px;}
+.stat-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;padding:9px 16px 4px;}
+.stat-card.mini{padding:11px 11px;}
+.stat-card.mini .label{font-size:9px;letter-spacing:.08em;}
+.stat-card.mini .value{font-size:18px;margin-top:4px;}
+.stat-card.mini .value .cur{font-size:.6em;}
 .stat-card{
   background:var(--card);
   border:1px solid var(--line-soft);
@@ -224,6 +231,20 @@ button{cursor:pointer;border:none;background:none;}
 .row-val.pos{color:var(--green);}
 .row-val.neg{color:var(--rust);}
 .row .chev{flex:none;color:var(--ink-faint);opacity:.6;}
+
+.entry{border-bottom:1px solid var(--line-soft);}
+.entry:last-child{border-bottom:none;}
+.entry .row{border-bottom:none;}
+.entry-notes{
+  padding:0 14px 12px 14px;margin-top:-4px;
+  font-size:12.5px;color:var(--ink-soft);
+  white-space:pre-wrap;line-height:1.5;
+}
+.entry-notes .nlabel{
+  display:flex;align-items:center;gap:5px;
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:3px;
+}
 
 .tag{
   font-size:10px;font-weight:600;letter-spacing:.02em;
@@ -556,23 +577,23 @@ function defaultData(){
           C("Inventory","Others"),C("Others","Others"),
           C("Savings","Savings")
         ],
+        incomeCategories:[
+          {id:uid(),name:"Salary"},
+          {id:uid(),name:"From Savings"},
+          {id:uid(),name:"Gift"},
+          {id:uid(),name:"Carried Over"},
+          {id:uid(),name:"Loan Received"},
+          {id:uid(),name:"Other"}
+        ],
         credit:{
           sources:[
-            {id:uid(),label:"Salary",amount:1739.17},
-            {id:uid(),label:"Savings",amount:1000},
-            {id:uid(),label:"From December",amount:134.29}
+            {id:uid(),label:"Salary",amount:1739.17,category:"Salary"},
+            {id:uid(),label:"Savings",amount:1000,category:"From Savings"},
+            {id:uid(),label:"From December",amount:134.29,category:"Carried Over"}
           ],
           accounts:[
             {id:uid(),label:"Cash",amount:84},
             {id:uid(),label:"UAB",amount:25}
-          ],
-          details:[
-            {id:uid(),group:"Salary",item:"Salary",amount:1739.17},
-            {id:uid(),group:"From Savings",item:"Initial Puji",amount:0},
-            {id:uid(),group:"Inventory",item:"From Savings",amount:1000},
-            {id:uid(),group:"Inventory",item:"Limon Vaia",amount:0},
-            {id:uid(),group:"Inventory",item:"Credit Card",amount:0},
-            {id:uid(),group:"Inventory",item:"Others",amount:0}
           ]
         },
         debit:{
@@ -644,11 +665,8 @@ function defaultData(){
           ]
         },
         loans:{total:0,entries:[
-          {id:uid(),label:"Lily Mahr",value:"300101 Taka"},
-          {id:uid(),label:"Gold held",value:"57.683 g 24k Gold"},
-          {id:uid(),label:"Gold rate",value:"5,202.59 tk/g"},
-          {id:uid(),label:"Ring",value:"16000tk / 5202.59"},
-          {id:uid(),label:"7 Jan, 25",value:"20 d / 85.53 d"}
+          {id:uid(),label:"Lily Mahr",value:"300101 Taka",
+           notes:"57.683 g 24k Gold at 5,202.59 tk/g\nRing: 16000tk / 5202.59\n7 Jan, 25 - 20 d / 85.53 d"}
         ]},
         savings:{total:0,entries:[]},
         investment:{total:0,roi:0,entries:[]},
@@ -678,10 +696,16 @@ function migrate(){
     var m = state.months[k];
     m.groups = m.groups || [];
     m.categories = m.categories || [];
-    m.credit = m.credit || {sources:[],accounts:[],details:[]};
+    m.incomeCategories = m.incomeCategories || [
+      {id:uid(),name:"Salary"},{id:uid(),name:"Gift"},{id:uid(),name:"Other"}
+    ];
+    m.credit = m.credit || {sources:[],accounts:[]};
     m.credit.sources = m.credit.sources || [];
     m.credit.accounts = m.credit.accounts || [];
-    m.credit.details = m.credit.details || [];
+    // give any old source a category; drop the retired allocation-detail list
+    var dfltCat = (m.incomeCategories[0]||{}).name || "Other";
+    m.credit.sources.forEach(function(s){ if(!s.category) s.category = dfltCat; });
+    if(m.credit.details) delete m.credit.details;
     m.debit = m.debit || {items:[],reconciliation:[]};
     m.debit.items = m.debit.items || [];
     m.debit.reconciliation = m.debit.reconciliation || [];
@@ -689,6 +713,10 @@ function migrate(){
     m.savings = m.savings || {total:0,entries:[]};
     m.investment = m.investment || {total:0,roi:0,entries:[]};
     m.collectable = m.collectable || {total:0,entries:[]};
+    // ensure every asset entry has a notes field
+    ["loans","savings","investment","collectable"].forEach(function(pk){
+      (m[pk].entries||[]).forEach(function(en){ if(en.notes==null) en.notes=""; });
+    });
   }
 }
 var saveTimer;
@@ -703,8 +731,8 @@ function M(){ return state.months[state.activeMonth]; }
 
 /* ---------- computations ---------- */
 function creditTotal(m){ var s=0,a=m.credit.sources||[]; for(var i=0;i<a.length;i++) s+=num(a[i].amount); return s; }
-function creditDetailTotal(m){ var s=0,a=m.credit.details||[]; for(var i=0;i<a.length;i++) s+=num(a[i].amount); return s; }
 function accountsTotal(m){ var s=0,a=m.credit.accounts||[]; for(var i=0;i<a.length;i++) s+=num(a[i].amount); return s; }
+function assetTotal(m,key){ return num((m[key]||{}).total); }
 function itemTotal(it){ return num(it.unitPrice)*num(it.qty); }
 function debitTotal(m){ var s=0,a=m.debit.items||[]; for(var i=0;i<a.length;i++) s+=itemTotal(a[i]); return s; }
 function balance(m){ return creditTotal(m)-debitTotal(m); }
@@ -782,6 +810,8 @@ function renderOverview(){
   var jt=justifiedTotal(m), ut=unjustifiedTotal(m);
   var jpct=pct(jt,db), bpct=pct(bal,cr);
   var mx=Math.max(cr,db,1);
+  var crW=Math.max(cr/mx*100,cr>0?3:0);
+  var dbW=Math.max(db/mx*100,db>0?3:0);
   var ct=categoryTotals(m);
   var top=Object.keys(ct).map(function(k){ return [k,ct[k]]; })
     .filter(function(p){ return p[1]>0; })
@@ -789,6 +819,8 @@ function renderOverview(){
   var topMax=top.length?top[0][1]:1;
   var nSrc=(m.credit.sources||[]).length;
   var nItems=(m.debit.items||[]).length;
+  var loanT=assetTotal(m,"loans"), saveT=assetTotal(m,"savings"), invT=assetTotal(m,"investment");
+  function entCount(k){ return (m[k].entries||[]).length; }
 
   $("#screen-overview").innerHTML =
   '<div class="hero">'+
@@ -797,10 +829,10 @@ function renderOverview(){
     '<div class="hsub"><span><b>'+fpct(bpct)+'</b> of credit kept</span><span>'+esc(m.label)+'</span></div>'+
     '<div class="compare">'+
       '<div class="cmp-row"><span class="cl">Credit</span>'+
-        '<span class="cmp-track"><span class="cmp-fill" style="width:'+(cr/mx*100)+'%;background:linear-gradient(90deg,#4F9E76,#2F6E4F)"></span></span>'+
+        '<span class="cmp-track"><span class="cmp-fill cr" style="width:'+crW+'%"></span></span>'+
         '<span class="cv num">'+fmt(cr)+'</span></div>'+
       '<div class="cmp-row"><span class="cl">Debit</span>'+
-        '<span class="cmp-track"><span class="cmp-fill" style="width:'+(db/mx*100)+'%;background:linear-gradient(90deg,#C9764C,#AE5029)"></span></span>'+
+        '<span class="cmp-track"><span class="cmp-fill db" style="width:'+dbW+'%"></span></span>'+
         '<span class="cv num">'+fmt(db)+'</span></div>'+
     '</div>'+
   '</div>'+
@@ -814,14 +846,21 @@ function renderOverview(){
       '<div class="label"><span class="dotr">&#9679;</span> Total Debit</div>'+
       '<div class="value num">'+curSpan()+fmt(db)+'</div>'+
       '<div class="meta">'+nItems+' expense entr'+(nItems===1?"y":"ies")+'</div></div>'+
-    '<div class="stat-card '+(bal>=0?"pos":"neg")+'" data-act="goto" data-tab="analysis">'+
-      '<div class="label">Balance</div>'+
-      '<div class="value num">'+curSpan()+fmt(bal)+'</div>'+
-      '<div class="meta">'+fpct(bpct)+' of total credit</div></div>'+
-    '<div class="stat-card" data-act="goto" data-tab="assets">'+
-      '<div class="label">In Accounts</div>'+
-      '<div class="value num">'+curSpan()+fmt(accountsTotal(m))+'</div>'+
-      '<div class="meta">'+((m.credit.accounts||[]).map(function(a){return esc(a.label);}).join(", "))+'</div></div>'+
+  '</div>'+
+
+  '<div class="stat-grid-3">'+
+    '<div class="stat-card mini" data-act="goto" data-tab="assets">'+
+      '<div class="label">Loans</div>'+
+      '<div class="value num">'+curSpan()+fmt(loanT)+'</div>'+
+      '<div class="meta">'+entCount("loans")+' entr'+(entCount("loans")===1?"y":"ies")+'</div></div>'+
+    '<div class="stat-card mini" data-act="goto" data-tab="assets">'+
+      '<div class="label">Savings</div>'+
+      '<div class="value num">'+curSpan()+fmt(saveT)+'</div>'+
+      '<div class="meta">'+entCount("savings")+' entr'+(entCount("savings")===1?"y":"ies")+'</div></div>'+
+    '<div class="stat-card mini" data-act="goto" data-tab="assets">'+
+      '<div class="label">Investment</div>'+
+      '<div class="value num">'+curSpan()+fmt(invT)+'</div>'+
+      '<div class="meta">ROI '+fmt0(num(m.investment.roi))+'</div></div>'+
   '</div>'+
 
   '<div class="gauge-card" data-act="goto" data-tab="analysis">'+
@@ -852,10 +891,11 @@ function renderOverview(){
 /* ---------- CREDIT ---------- */
 function renderCredit(){
   var m=M();
-  var cr=creditTotal(m), dt=creditDetailTotal(m);
+  var cr=creditTotal(m);
   var srcRows=(m.credit.sources||[]).map(function(s){
     return '<div class="row" data-act="edit" data-kind="creditSource" data-id="'+s.id+'">'+
-      '<div class="row-body"><div class="row-name">'+(esc(s.label)||"<span style=\"color:var(--ink-faint)\">Untitled</span>")+'</div>'+
+      '<div class="row-body"><div class="row-name">'+(esc(s.label)||"<span style=\"color:var(--ink-faint)\">Untitled</span>")+
+        ' <span class="tag">'+esc(s.category||"Other")+'</span></div>'+
       '<div class="row-meta">'+fpct(pct(num(s.amount),cr))+' of total credit</div></div>'+
       '<div class="row-val pos num">'+curSpan()+fmt(num(s.amount))+'</div>'+CHEV+'</div>';
   }).join("");
@@ -867,20 +907,20 @@ function renderCredit(){
       '<div class="row-val num">'+curSpan()+fmt(num(a.amount))+'</div>'+CHEV+'</div>';
   }).join("");
 
-  var byGroup={};
-  (m.credit.details||[]).forEach(function(d){
-    (byGroup[d.group]=byGroup[d.group]||[]).push(d);
+  // income totals by category
+  var byCat={};
+  (m.credit.sources||[]).forEach(function(s){
+    var c=s.category||"Other";
+    byCat[c]=(byCat[c]||0)+num(s.amount);
   });
-  var detailHtml="";
-  Object.keys(byGroup).forEach(function(g){
-    detailHtml+='<div class="grp-label">'+esc(g)+'</div>';
-    detailHtml+=byGroup[g].map(function(d){
-      return '<div class="row" data-act="edit" data-kind="creditDetail" data-id="'+d.id+'">'+
-        '<div class="row-body"><div class="row-name">'+(esc(d.item)||"Item")+'</div>'+
-        '<div class="row-meta">'+fpct(pct(num(d.amount),cr))+' of total credit</div></div>'+
-        '<div class="row-val num">'+curSpan()+fmt(num(d.amount))+'</div>'+CHEV+'</div>';
-    }).join("");
-  });
+  var catList=Object.keys(byCat).map(function(k){return [k,byCat[k]];}).sort(function(a,b){return b[1]-a[1];});
+  var catMax=catList.length?Math.max(catList[0][1],1):1;
+  var catHtml=catList.map(function(p){
+    return '<div class="bar-item"><div class="bar-top">'+
+      '<span class="bar-name">'+esc(p[0])+'</span>'+
+      '<span class="bar-vals"><b class="num">$'+fmt(p[1])+'</b> &middot; '+fpct(pct(p[1],cr))+'</span></div>'+
+      '<div class="bar-track"><div class="bar-fill g" style="width:'+pct(p[1],catMax)+'%"></div></div></div>';
+  }).join("");
 
   $("#screen-credit").innerHTML =
   '<div class="pad"><div class="scr-title">Credit &middot; Income</div></div>'+
@@ -898,19 +938,17 @@ function renderCredit(){
     '</div></div>'+
 
   '<div class="section"><div class="section-head">'+
+    '<div class="section-title"><span class="acc"></span>By Category</div>'+
+    '<div class="section-sub">income breakdown</div></div>'+
+    '<div class="card">'+(catHtml||emptyRow("No income yet"))+'</div></div>'+
+
+  '<div class="section"><div class="section-head">'+
     '<div class="section-title"><span class="acc"></span>Accounts</div>'+
     '<button class="add-btn" data-act="add" data-kind="creditAccount">'+PLUS+'Add</button></div>'+
     '<div class="card">'+(accRows||emptyRow("No accounts noted"))+
       '<div class="foot-row"><span class="fl">In Accounts</span><span class="fv num">$'+fmt(accountsTotal(m))+'</span></div>'+
     '</div></div>'+
-
-  '<div class="section"><div class="section-head">'+
-    '<div class="section-title"><span class="acc"></span>Allocation Detail</div>'+
-    '<button class="add-btn" data-act="add" data-kind="creditDetail">'+PLUS+'Add</button></div>'+
-    '<div class="card">'+(detailHtml||emptyRow("No allocation detail"))+
-      '<div class="foot-row"><span class="fl">Detail Total</span><span class="fv num">$'+fmt(dt)+' &middot; '+fpct(pct(dt,cr))+'</span></div>'+
-    '</div></div>'+
-  '<div class="divider-note">Tap any line to edit &middot; use Add to create new lines</div>';
+  '<div class="divider-note">Tap any line to edit &middot; income categories live in Settings</div>';
 }
 
 /* ---------- DEBIT ---------- */
@@ -1070,10 +1108,18 @@ function renderAnalysis(){
 function assetPanel(m,key,title,icon,extra){
   var p=m[key];
   var entries=(p.entries||[]).map(function(e){
-    return '<div class="row" data-act="edit" data-kind="assetEntry" data-panel="'+key+'" data-id="'+e.id+'">'+
-      '<div class="row-body"><div class="row-name">'+(esc(e.label)||"<span style=\"color:var(--ink-faint)\">Entry</span>")+'</div>'+
-      '<div class="row-meta">tap to edit</div></div>'+
-      '<div class="row-val" style="font-size:14px;font-family:\'Spline\';font-weight:600">'+(esc(e.value)||"&mdash;")+'</div>'+CHEV+'</div>';
+    var notes=(e.notes||"").trim();
+    var notesBlock = notes ?
+      '<div class="entry-notes"><div class="nlabel">'+
+        '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3z"/></svg>'+
+        'Notes</div>'+esc(notes)+'</div>' : "";
+    return '<div class="entry">'+
+      '<div class="row" data-act="edit" data-kind="assetEntry" data-panel="'+key+'" data-id="'+e.id+'">'+
+        '<div class="row-body"><div class="row-name">'+(esc(e.label)||"<span style=\"color:var(--ink-faint)\">Entry</span>")+'</div>'+
+        '<div class="row-meta">'+(notes?"has notes &middot; tap to edit":"tap to edit")+'</div></div>'+
+        '<div class="row-val" style="font-size:14px;font-family:\'Spline\';font-weight:600">'+(esc(e.value)||"&mdash;")+'</div>'+CHEV+
+      '</div>'+notesBlock+
+    '</div>';
   }).join("");
   return '<div class="panel"><div class="panel-head">'+
     '<div class="pt"><span class="pico">'+icon+'</span>'+title+'</div>'+
@@ -1123,17 +1169,31 @@ function renderCategories(){
     }).join("");
   });
 
+  // income categories
+  var incRows=(m.incomeCategories||[]).map(function(c){
+    var used=(m.credit.sources||[]).filter(function(s){return s.category===c.name;}).length;
+    var sum=0; (m.credit.sources||[]).forEach(function(s){ if(s.category===c.name) sum+=num(s.amount); });
+    return '<div class="row" data-act="edit" data-kind="incomeCategory" data-id="'+c.id+'">'+
+      '<div class="row-body"><div class="row-name">'+esc(c.name)+'</div>'+
+      '<div class="row-meta">used by '+used+' income source'+(used===1?"":"s")+'</div></div>'+
+      '<div class="row-val num" style="font-size:14px">'+(sum>0?"$"+fmt(sum):"&mdash;")+'</div>'+CHEV+'</div>';
+  }).join("");
+
   $("#screen-categories").innerHTML=
   '<div class="back-link" data-act="open-settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Settings</div>'+
   '<div class="pad" style="padding-top:4px"><div class="scr-title">Categories &amp; Groups</div></div>'+
   '<div class="section" style="margin-top:6px"><div class="section-head">'+
-    '<div class="section-title"><span class="acc"></span>This Month\'s Structure</div>'+
+    '<div class="section-title"><span class="acc"></span>Income Categories</div>'+
+    '<button class="add-btn" data-act="add" data-kind="incomeCategory">'+PLUS+'New</button></div>'+
+    '<div class="card">'+(incRows||emptyRow("No income categories"))+'</div></div>'+
+  '<div class="section"><div class="section-head">'+
+    '<div class="section-title"><span class="acc"></span>Expense Structure</div>'+
     '<button class="add-btn" data-act="add" data-kind="category">'+PLUS+'New</button></div>'+
     '<div class="card">'+(html||emptyRow("No categories"))+'</div></div>'+
   '<div class="info-card" style="margin-top:16px">'+
-    '<p><b>How this works.</b> Every expense belongs to a <b>category</b> (e.g. Protein, House Rent). Every category rolls up into a <b>group</b> (e.g. Food, Bills). Your Analysis tab uses exactly this structure - the same logic as your spreadsheet. Categories can change month to month; edit them here freely.</p>'+
+    '<p><b>Income categories</b> tag each income source (Salary, Gift, Loan Received...). <b>Expense categories</b> tag each expense and roll up into <b>groups</b> (e.g. Protein &rarr; Food) - the Analysis tab uses that structure. Both lists can change month to month; edit them here freely.</p>'+
   '</div>'+
-  '<div class="divider-note">Tap a category to rename, regroup, or delete it</div>';
+  '<div class="divider-note">Tap any category to rename, regroup, or delete it</div>';
 }
 
 /* ---------- INSTALL GUIDE ---------- */
@@ -1221,6 +1281,14 @@ function sheetField(label,id,value,opts){
   return '<div class="field"><label>'+esc(label)+'</label>'+
     '<input id="'+id+'" type="'+type+'"'+im+ph+' value="'+esc(value==null?"":value)+'">'+hint+'</div>';
 }
+function sheetTextarea(label,id,value,opts){
+  opts=opts||{};
+  var ph=opts.ph?' placeholder="'+esc(opts.ph)+'"':"";
+  var hint=opts.hint?'<div class="hint">'+esc(opts.hint)+'</div>':"";
+  return '<div class="field"><label>'+esc(label)+'</label>'+
+    '<textarea id="'+id+'" rows="'+(opts.rows||3)+'"'+ph+
+    ' style="resize:vertical;min-height:64px;line-height:1.5">'+esc(value==null?"":value)+'</textarea>'+hint+'</div>';
+}
 function actionBar(kind,id,panel,isNew,showDelete){
   var save='<button class="btn btn-primary" data-act="save-edit" data-kind="'+kind+'" data-id="'+(id||"")+'" data-panel="'+(panel||"")+'">'+(isNew?"Add":"Save")+'</button>';
   var cancel='<button class="btn btn-ghost" data-act="cancel">Cancel</button>';
@@ -1232,11 +1300,17 @@ function openEdit(kind,id,panel){
   var m=M(), html="", isNew=!id;
 
   if(kind==="creditSource"){
-    var o=id?find(m.credit.sources,id):{label:"",amount:""};
+    var o=id?find(m.credit.sources,id):{label:"",amount:"",category:((m.incomeCategories[0]||{}).name||"")};
+    var icOpts=(m.incomeCategories||[]).map(function(c){
+      return '<option value="'+esc(c.name)+'"'+(c.name===o.category?" selected":"")+'>'+esc(c.name)+'</option>';
+    }).join("");
     html='<div class="sheet-title">'+(isNew?"New Income Source":"Edit Income Source")+'</div>'+
       '<div class="sheet-desc">A line of money coming in this month.</div>'+
-      sheetField("Source name","f_label",o.label,{ph:"e.g. Salary"})+
+      sheetField("Source name","f_label",o.label,{ph:"e.g. January Salary"})+
       sheetField("Amount","f_amount",o.amount,{inputmode:"decimal",ph:"0.00"})+
+      '<div class="field"><label>Category</label>'+
+        '<select id="f_category">'+icOpts+'</select>'+
+        '<div class="hint">Edit this list in Settings &rarr; Income Categories.</div></div>'+
       actionBar(kind,id,panel,isNew,!isNew);
   }
   else if(kind==="creditAccount"){
@@ -1247,16 +1321,13 @@ function openEdit(kind,id,panel){
       sheetField("Amount","f_amount",o.amount,{inputmode:"decimal",ph:"0.00"})+
       actionBar(kind,id,panel,isNew,!isNew);
   }
-  else if(kind==="creditDetail"){
-    var o=id?find(m.credit.details,id):{group:"",item:"",amount:""};
-    var groups=[]; (m.credit.details||[]).forEach(function(d){ if(groups.indexOf(d.group)<0) groups.push(d.group); });
-    html='<div class="sheet-title">'+(isNew?"New Allocation Line":"Edit Allocation Line")+'</div>'+
-      '<div class="sheet-desc">A detailed breakdown line of where credit comes from.</div>'+
-      '<div class="field"><label>Group</label>'+
-        '<input id="f_group" list="dl_groups" value="'+esc(o.group)+'" placeholder="e.g. Inventory">'+
-        '<datalist id="dl_groups">'+groups.map(function(g){return '<option value="'+esc(g)+'">';}).join("")+'</datalist></div>'+
-      sheetField("Item","f_item",o.item,{ph:"e.g. From Savings"})+
-      sheetField("Amount","f_amount",o.amount,{inputmode:"decimal",ph:"0.00"})+
+  else if(kind==="incomeCategory"){
+    var o=id?find(m.incomeCategories,id):{name:""};
+    var inUse=id?(m.credit.sources||[]).filter(function(s){return s.category===o.name;}).length:0;
+    html='<div class="sheet-title">'+(isNew?"New Income Category":"Edit Income Category")+'</div>'+
+      '<div class="sheet-desc">Tags an income source - e.g. Salary, Gift, Loan Received. '+
+        (inUse?("Used by "+inUse+" source"+(inUse===1?"":"s")+" - renaming updates them."):"")+'</div>'+
+      sheetField("Category name","f_name",o.name,{ph:"e.g. Bonus"})+
       actionBar(kind,id,panel,isNew,!isNew);
   }
   else if(kind==="debitItem"){
@@ -1302,12 +1373,15 @@ function openEdit(kind,id,panel){
   }
   else if(kind==="assetEntry"){
     var p=m[panel];
-    var o=id?find(p.entries,id):{label:"",value:""};
+    var o=id?find(p.entries,id):{label:"",value:"",notes:""};
     var pretty={loans:"Loan",savings:"Savings",investment:"Investment",collectable:"Collectable"}[panel];
     html='<div class="sheet-title">'+(isNew?("New "+pretty+" Entry"):("Edit "+pretty+" Entry"))+'</div>'+
       '<div class="sheet-desc">Free-form - value can be money, gold, taka, a date, anything.</div>'+
       sheetField("Label","f_label",o.label,{ph:"e.g. Lily Mahr, Ring"})+
-      sheetField("Value","f_value",o.value,{ph:"e.g. 57.683 g 24k Gold"})+
+      sheetField("Value","f_value",o.value,{ph:"e.g. 300101 Taka"})+
+      sheetTextarea("Notes (optional)","f_notes",o.notes,{rows:4,
+        ph:"Anything you want to remember about this entry - shown under it only if filled.",
+        hint:"For tracking only. Leave blank if not needed."})+
       actionBar(kind,id,panel,isNew,!isNew);
   }
   else if(kind==="category"){
@@ -1362,10 +1436,11 @@ function saveEdit(kind,id,panel){
   var m=M(), isNew=!id;
 
   if(kind==="creditSource"){
-    var label=val("f_label"), amount=num(val("f_amount"));
+    var label=val("f_label"), amount=num(val("f_amount")), category=val("f_category");
     if(!label){ toast("Give it a name"); return; }
-    if(isNew) m.credit.sources.push({id:uid(),label:label,amount:amount});
-    else { var o=find(m.credit.sources,id); o.label=label; o.amount=amount; }
+    if(!category) category=((m.incomeCategories[0]||{}).name||"Other");
+    if(isNew) m.credit.sources.push({id:uid(),label:label,amount:amount,category:category});
+    else { var o=find(m.credit.sources,id); o.label=label; o.amount=amount; o.category=category; }
   }
   else if(kind==="creditAccount"){
     var label=val("f_label"), amount=num(val("f_amount"));
@@ -1373,11 +1448,21 @@ function saveEdit(kind,id,panel){
     if(isNew) m.credit.accounts.push({id:uid(),label:label,amount:amount});
     else { var o=find(m.credit.accounts,id); o.label=label; o.amount=amount; }
   }
-  else if(kind==="creditDetail"){
-    var group=val("f_group")||"Other", item=val("f_item"), amount=num(val("f_amount"));
-    if(!item){ toast("Give the item a name"); return; }
-    if(isNew) m.credit.details.push({id:uid(),group:group,item:item,amount:amount});
-    else { var o=find(m.credit.details,id); o.group=group; o.item=item; o.amount=amount; }
+  else if(kind==="incomeCategory"){
+    var name=val("f_name");
+    if(!name){ toast("Name the category"); return; }
+    if(isNew){
+      if((m.incomeCategories||[]).some(function(c){return c.name.toLowerCase()===name.toLowerCase();})){
+        toast("That category already exists"); return;
+      }
+      m.incomeCategories.push({id:uid(),name:name});
+    } else {
+      var o=find(m.incomeCategories,id), oldName=o.name;
+      o.name=name;
+      if(oldName!==name){
+        (m.credit.sources||[]).forEach(function(s){ if(s.category===oldName) s.category=name; });
+      }
+    }
   }
   else if(kind==="debitItem"){
     var name=val("f_name"), unit=num(val("f_unit")), qty=num(val("f_qty"));
@@ -1404,11 +1489,11 @@ function saveEdit(kind,id,panel){
     else { var o=find(m.debit.reconciliation,id); o.item=item; o.status=status; o.amount=amount; }
   }
   else if(kind==="assetEntry"){
-    var label=val("f_label"), value=val("f_value");
+    var label=val("f_label"), value=val("f_value"), notes=val("f_notes");
     if(!label && !value){ toast("Add a label or value"); return; }
     var p=m[panel];
-    if(isNew) p.entries.push({id:uid(),label:label,value:value});
-    else { var o=find(p.entries,id); o.label=label; o.value=value; }
+    if(isNew) p.entries.push({id:uid(),label:label,value:value,notes:notes});
+    else { var o=find(p.entries,id); o.label=label; o.value=value; o.notes=notes; }
   }
   else if(kind==="category"){
     var name=val("f_name"), group=val("f_group")||"Others";
@@ -1437,7 +1522,7 @@ function deleteEdit(kind,id,panel){
   var m=M();
   var maps={
     creditSource:m.credit.sources, creditAccount:m.credit.accounts,
-    creditDetail:m.credit.details, debitItem:m.debit.items,
+    debitItem:m.debit.items,
     reconciliation:m.debit.reconciliation, category:m.categories
   };
   if(kind==="assetEntry"){
@@ -1447,6 +1532,12 @@ function deleteEdit(kind,id,panel){
     var used=(m.debit.items||[]).filter(function(i){return i.category===c.name;}).length;
     if(used>0){ toast("In use by "+used+" expense"+(used===1?"":"s")+" - reassign first"); return; }
     m.categories=m.categories.filter(function(x){ return x.id!==id; });
+  } else if(kind==="incomeCategory"){
+    var ic=find(m.incomeCategories,id);
+    var usedI=(m.credit.sources||[]).filter(function(s){return s.category===ic.name;}).length;
+    if(usedI>0){ toast("In use by "+usedI+" source"+(usedI===1?"":"s")+" - reassign first"); return; }
+    if((m.incomeCategories||[]).length<=1){ toast("Keep at least one income category"); return; }
+    m.incomeCategories=m.incomeCategories.filter(function(x){ return x.id!==id; });
   } else if(maps[kind]){
     var arr=maps[kind];
     for(var i=0;i<arr.length;i++){ if(arr[i].id===id){ arr.splice(i,1); break; } }
@@ -1470,7 +1561,8 @@ function saveMonth(id){
       label:label,
       groups:(src.groups||[]).slice(),
       categories:(src.categories||[]).map(function(c){ return {id:uid(),name:c.name,group:c.group}; }),
-      credit:{sources:[],accounts:[],details:[]},
+      incomeCategories:(src.incomeCategories||[]).map(function(c){ return {id:uid(),name:c.name}; }),
+      credit:{sources:[],accounts:[]},
       debit:{items:[],reconciliation:[]},
       loans:{total:0,entries:[]},
       savings:{total:0,entries:[]},
@@ -1521,7 +1613,7 @@ function openSettings(){
     '<div class="sheet-desc">Backups, structure, and app info.</div>'+
     settingsItem("export","Export Backup","Save all your data to a file","M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3")+
     settingsItem("import","Import Backup","Restore data from a backup file","M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12")+
-    settingsItem("categories","Categories &amp; Groups","Edit this month's structure","M4 6h16M4 12h16M4 18h10")+
+    settingsItem("categories","Categories &amp; Groups","Income &amp; expense categories","M4 6h16M4 12h16M4 18h10")+
     settingsItem("install","Install on Phone","Add to home screen, backups guide","M5 2h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM12 18h.01")+
     settingsItem("about","About &amp; Tips","How the app works","M12 16v-4M12 8h.01M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z")+
     '<div style="height:8px"></div>'+
