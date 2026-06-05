@@ -170,6 +170,147 @@ button{cursor:pointer;border:none;background:none;}
 .stat-card.pos .value{color:var(--green);}
 .stat-card.neg .value{color:var(--rust);}
 
+/* liquid-position strip on Overview */
+.liq-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 16px;margin-top:14px;}
+.liq-card{
+  background:var(--card);border:1px solid var(--line-soft);
+  border-radius:16px;padding:13px 14px;
+  box-shadow:0 3px 10px -6px var(--shadow);
+}
+.liq-card .liq-label{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:600;
+}
+.liq-card .liq-val{
+  font-family:'Fraunces';font-weight:600;font-size:22px;margin-top:4px;
+  font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.liq-card .liq-val .cur{font-size:.55em;color:var(--ink-faint);vertical-align:.15em;}
+.liq-card.pos .liq-val{color:var(--green);}
+.liq-card.neg .liq-val{color:var(--rust);}
+.liq-card .liq-meta{font-size:11px;color:var(--ink-soft);margin-top:1px;}
+
+/* second hero (net worth) */
+.hero-alt{background:linear-gradient(165deg,#3A3328,#231D17);margin-top:14px;}
+.hero-alt .hl{color:#E9D49A;}
+.nw-rows{margin-top:14px;display:flex;flex-direction:column;gap:6px;position:relative;z-index:1;}
+.nw-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;}
+.nw-row .nwl{color:#C9BCA8;}
+.nw-row .nwv{font-variant-numeric:tabular-nums;font-weight:600;color:#D8C9AE;}
+.nw-row .nwv.neg{color:#E59E7A;}
+
+/* credit card list (Assets page) */
+.card-list-item{
+  background:var(--card);border:1px solid var(--line-soft);
+  border-radius:14px;padding:14px;margin:0 0 9px 0;
+  box-shadow:0 3px 8px -6px var(--shadow);
+}
+.card-list-item:active{background:var(--card-2);}
+.card-list-item .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.card-list-item .card-name{
+  font-family:'Fraunces';font-weight:600;font-size:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.card-list-item .card-name .dot{
+  display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--rust);
+}
+.card-list-item .card-bal{
+  font-family:'Fraunces';font-weight:600;font-size:21px;line-height:1;
+  color:var(--rust-deep);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;
+}
+.card-list-item .card-bal .cur{font-size:.6em;color:var(--ink-faint);}
+.card-list-item .card-bal .ovd{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'Spline';margin-top:2px;}
+.card-list-item .card-detail{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px;
+  padding-top:11px;border-top:1px dashed var(--line);
+}
+.card-list-item .cd-cell .cd-l{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:2px;}
+.card-list-item .cd-cell .cd-v{font-family:'Fraunces';font-weight:600;font-size:14.5px;font-variant-numeric:tabular-nums;}
+.card-list-item .cd-cell.due-soon .cd-v{color:var(--rust-deep);}
+.card-list-item .card-flow{
+  margin-top:9px;font-size:11px;color:var(--ink-soft);
+  display:flex;gap:13px;flex-wrap:wrap;
+}
+.card-list-item .card-flow b{color:var(--ink);font-variant-numeric:tabular-nums;}
+.card-list-item .card-notes{
+  margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);
+  font-size:12px;color:var(--ink-soft);white-space:pre-wrap;line-height:1.5;
+}
+
+/* compact card strip on Debit page */
+.card-strip{
+  display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px 16px;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.card-strip::-webkit-scrollbar{display:none;}
+.card-chip{
+  flex:none;min-width:128px;padding:9px 11px;border-radius:11px;
+  background:var(--card);border:1px solid var(--line-soft);
+  box-shadow:0 2px 6px -4px var(--shadow);
+}
+.card-chip .cc-name{font-size:10.5px;letter-spacing:.05em;font-weight:600;color:var(--ink-soft);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;}
+.card-chip .cc-bal{font-family:'Fraunces';font-weight:600;font-size:15.5px;color:var(--rust-deep);
+  font-variant-numeric:tabular-nums;margin-top:2px;}
+
+/* payment-method badge on debit rows */
+.pay-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:10px;font-weight:600;padding:2px 7px;border-radius:7px;
+  background:var(--card-2);border:1px solid var(--line);color:var(--ink-soft);
+  white-space:nowrap;
+}
+.pay-badge.cash{background:#E5EEDF;border-color:#C2D5B8;color:#3D5C2D;}
+.pay-badge.card{background:#F1E0CF;border-color:#DABFA3;color:#7A4A1F;}
+.pay-badge.payment{background:#D9E4EE;border-color:#B1C4D9;color:#274560;}
+
+/* Current tab — pool blocks */
+.pool-big-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px;
+}
+.pool-bigval{
+  font-family:'Fraunces';font-weight:600;font-size:32px;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.pool-bigval.pos{color:var(--green);}
+.pool-bigval .cur{font-size:.55em;color:var(--ink-faint);vertical-align:.18em;margin-right:.05em;}
+.pool-actions{display:flex;gap:6px;flex:none;}
+.pool-act-btn{
+  width:38px;height:38px;border-radius:11px;font-size:18px;font-weight:600;
+  background:var(--card-2);border:1px solid var(--line);color:var(--ink);
+  display:grid;place-items:center;line-height:1;
+}
+.pool-act-btn:active{transform:scale(.92);background:var(--paper-2);}
+.pool-act-btn.plus{background:var(--green-soft);border-color:#BFD3BF;color:var(--green-deep);}
+.pool-act-btn.minus{background:var(--rust-soft);border-color:#E0C3B0;color:var(--rust-deep);}
+.pool-act-btn.edit{width:auto;padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em;}
+.pool-flow{
+  font-size:11px;color:var(--ink-soft);
+  display:flex;gap:13px;flex-wrap:wrap;
+}
+.pool-flow b{color:var(--ink);font-variant-numeric:tabular-nums;}
+
+.pool-item{
+  background:var(--card-2);border:1px solid var(--line-soft);
+  border-radius:12px;padding:12px;margin:0 0 8px 0;
+}
+.pool-item:active{background:var(--paper-2);}
+.pool-item .pool-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px;
+}
+.pool-item .pool-name{font-family:'Fraunces';font-weight:600;font-size:15.5px;}
+.pool-item .pool-bal{
+  font-family:'Fraunces';font-weight:600;font-size:19px;line-height:1;
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.pool-item .pool-bal.pos{color:var(--green);}
+.pool-item .pool-bal.neg{color:var(--rust-deep);}
+.pool-item .pool-bal .cur{font-size:.6em;color:var(--ink-faint);}
+.pool-notes{
+  margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);
+  font-size:12px;color:var(--ink-soft);white-space:pre-wrap;line-height:1.5;
+}
+
 .gauge-card{
   background:var(--card);border:1px solid var(--line-soft);
   border-radius:16px;padding:14px 15px;margin:4px 16px 0;
@@ -339,10 +480,11 @@ button{cursor:pointer;border:none;background:none;}
 }
 .tab{
   flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-  padding:5px 2px;color:var(--ink-faint);border-radius:12px;
+  padding:5px 1px;color:var(--ink-faint);border-radius:12px;min-width:0;
 }
-.tab svg{width:23px;height:23px;}
-.tab span{font-size:9.5px;font-weight:600;letter-spacing:.02em;}
+.tab svg{width:21px;height:21px;flex:none;}
+.tab span{font-size:9px;font-weight:600;letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 .tab.active{color:var(--ink);}
 .tab.active svg{color:var(--green);}
 .tab.active span{color:var(--ink);}
@@ -488,6 +630,7 @@ button{cursor:pointer;border:none;background:none;}
   </div>
 
   <div id="screen-overview" class="screen active"></div>
+  <div id="screen-current" class="screen"></div>
   <div id="screen-credit" class="screen"></div>
   <div id="screen-debit" class="screen"></div>
   <div id="screen-analysis" class="screen"></div>
@@ -502,6 +645,10 @@ button{cursor:pointer;border:none;background:none;}
     <button class="tab active" data-tab="overview">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
       <span>Overview</span>
+    </button>
+    <button class="tab" data-tab="current">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+      <span>Current</span>
     </button>
     <button class="tab" data-tab="credit">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
@@ -548,132 +695,1288 @@ var PLUS = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="
 
 /* ---------- default data: the real January 2025 sheet ---------- */
 function defaultData(){
-  function C(name,group){ return {id:uid(),name:name,group:group}; }
-  function di(name,unitPrice,qty,category){
-    return {id:uid(),name:name,unitPrice:unitPrice,qty:qty,category:category,justified:true};
-  }
-  return {
-    version:1,
-    activeMonth:"jan25",
-    activeTab:"overview",
-    months:{
-      jan25:{
-        label:"January 2025",
-        groups:["Food","Grocery","Bills","Home Appliances","Transportation","Education","Tax","Insurance","Bangladesh","Charity","Clothings","Others","Savings"],
-        categories:[
-          C("Protein","Food"),C("Vegetables","Food"),C("Carbs","Food"),C("Fruits","Food"),C("Other Food Items","Food"),
-          C("Gocery","Grocery"),
-          C("Electricity","Bills"),C("House Rent","Bills"),C("Internet","Bills"),C("Mobile Phone","Bills"),
-          C("Home Appliances","Home Appliances"),
-          C("Transportation","Transportation"),
-          C("Education","Education"),
-          C("Tax","Tax"),
-          C("Insurance","Insurance"),
-          C("Bangladesh","Bangladesh"),
-          C("Charity","Charity"),
-          C("Clothings","Clothings"),
-          C("Amar Hathkhoroch","Others"),C("Lily'r Hathkhoroch","Others"),C("Dhar disi","Others"),
-          C("Dhar Mitano","Others"),C("Not Accounted","Others"),C("Investment","Others"),
-          C("Inventory","Others"),C("Others","Others"),
-          C("Savings","Savings")
-        ],
-        incomeCategories:[
-          {id:uid(),name:"Salary"},
-          {id:uid(),name:"From Savings"},
-          {id:uid(),name:"Gift"},
-          {id:uid(),name:"Carried Over"},
-          {id:uid(),name:"Loan Received"},
-          {id:uid(),name:"Other"}
-        ],
-        credit:{
-          sources:[
-            {id:uid(),label:"Salary",amount:1739.17,category:"Salary"},
-            {id:uid(),label:"Savings",amount:1000,category:"From Savings"},
-            {id:uid(),label:"From December",amount:134.29,category:"Carried Over"}
-          ],
-          accounts:[
-            {id:uid(),label:"Cash",amount:84},
-            {id:uid(),label:"UAB",amount:25}
-          ]
+  /* Embedded snapshot of the user's June 2026 data. The migrate() pass
+     will add any new fields (cards, paymentMethod, etc.) if missing. */
+  var snapshot = {
+  "version": 1,
+  "activeMonth": "ml6bh9uun9p",
+  "activeTab": "assets",
+  "months": {
+    "jan25": {
+      "label": "January 2025",
+      "groups": [
+        "Food",
+        "Grocery",
+        "Bills",
+        "Home Appliances",
+        "Transportation",
+        "Education",
+        "Tax",
+        "Insurance",
+        "Bangladesh",
+        "Charity",
+        "Clothings",
+        "Others",
+        "Savings"
+      ],
+      "categories": [
+        {
+          "id": "o4h6w5ujan",
+          "name": "Protein",
+          "group": "Food"
         },
-        debit:{
-          items:[
-            di("Ammu",500,1,"Bangladesh"),
-            di("Auburn Islamic Center",1,1,"Charity"),
-            di("Limon Vaia",100,1,"Others"),
-            di("House Rent",557.87,1,"House Rent"),
-            di("Lily Application Fee",70,4,"Lily'r Hathkhoroch"),
-            di("Electricity",58.5,1,"Electricity"),
-            di("Internet",46.99,1,"Internet"),
-            di("Lily Mahr",20,1,"Dhar Mitano"),
-            di("Ginger Garlic Paste",8.27,1,"Other Food Items"),
-            di("Cauliflower",1.96,3,"Vegetables"),
-            di("Onion 10lb",7.25,1,"Other Food Items"),
-            di("Potato 10lb",6.35,1,"Carbs"),
-            di("Chicken 40lb",30,1,"Protein"),
-            di("Grocery Tax",5.2,1,"Gocery"),
-            di("Coffee",6.68,1,"Other Food Items"),
-            di("Lemon Cake",7.68,1,"Carbs"),
-            di("Grocery Tax",1.15,1,"Gocery"),
-            di("Apple 3lb",4.24,1,"Fruits"),
-            di("Cheese",2.24,1,"Other Food Items"),
-            di("Yogurt",3.54,1,"Other Food Items"),
-            di("Eggs 18pcs",7.12,1,"Protein"),
-            di("Milk",3.07,2,"Other Food Items"),
-            di("Carrots 5lb",3.98,1,"Vegetables"),
-            di("Pineapple",2.28,1,"Fruits"),
-            di("Tomato 1.89lb",1.85,1,"Vegetables"),
-            di("Grocery Tax",2.83,1,"Gocery"),
-            di("Chick Fill A",3,1,"Lily'r Hathkhoroch"),
-            di("Rose Tob",7.99,1,"Lily'r Hathkhoroch"),
-            di("Cheese",3.79,1,"Other Food Items"),
-            di("Bell Paper",3.63,1,"Vegetables"),
-            di("Grocery Tax",1.31,1,"Gocery"),
-            di("Dominos Pizza",15.03,1,"Lily'r Hathkhoroch"),
-            di("Chick Fill A",4.62,1,"Lily'r Hathkhoroch"),
-            di("Elach",8.79,1,"Other Food Items"),
-            di("Moshla",2.71,1,"Other Food Items"),
-            di("Chick Fill A",5.78,1,"Lily'r Hathkhoroch"),
-            di("ChatGPT",21.8,1,"Education"),
-            di("BBQ Sauce",2.98,1,"Other Food Items"),
-            di("Chili Sauce",1.48,1,"Other Food Items"),
-            di("Tomato Ketchup",1.28,1,"Other Food Items"),
-            di("Grocery Tax",0.46,1,"Gocery"),
-            di("Eggs 18pcs",6.16,1,"Protein"),
-            di("Corn Strarch",1.92,1,"Other Food Items"),
-            di("Shrimp",5.24,1,"Protein"),
-            di("Cheese Puffs",2.86,3,"Carbs"),
-            di("Oyster Sauce",3.12,1,"Other Food Items"),
-            di("Fish Sauce",4.28,1,"Other Food Items"),
-            di("Cookie Dough",2.97,1,"Carbs"),
-            di("Evaporated Milk",0.25,12,"Other Food Items"),
-            di("Grocery Tax",2.82,1,"Gocery"),
-            di("Beef 15lb",65.87,1,"Protein"),
-            di("Pizza",11.98,1,"Amar Hathkhoroch"),
-            di("Flower Gift",8.71,1,"Others"),
-            di("Coffee, Cheese etc",23.9,1,"Other Food Items"),
-            di("Shanpapri",3.26,1,"Carbs"),
-            di("Shanpapri",3.26,2,"Charity"),
-            di("Panera Coffee",3.04,1,"Lily'r Hathkhoroch"),
-            di("Chick Fill A Coffee",2.39,1,"Lily'r Hathkhoroch"),
-            di("Flour, Milk, Suger, Chips",32.62,1,"Carbs"),
-            di("Abbu",500,1,"Bangladesh")
-          ],
-          reconciliation:[
-            {id:uid(),item:"Coffee",status:"Exact Match",amount:6.68},
-            {id:uid(),item:"Chips",status:"Partial Match",amount:32.62}
-          ]
+        {
+          "id": "ynkttr7jan",
+          "name": "Vegetables",
+          "group": "Food"
         },
-        loans:{total:0,entries:[
-          {id:uid(),label:"Lily Mahr",value:"300101 Taka",
-           notes:"57.683 g 24k Gold at 5,202.59 tk/g\nRing: 16000tk / 5202.59\n7 Jan, 25 - 20 d / 85.53 d"}
-        ]},
-        savings:{total:0,entries:[]},
-        investment:{total:0,roi:0,entries:[]},
-        collectable:{total:0,entries:[]}
-      }
+        {
+          "id": "f75zzgnjan",
+          "name": "Carbs",
+          "group": "Food"
+        },
+        {
+          "id": "d2s9qprjan",
+          "name": "Fruits",
+          "group": "Food"
+        },
+        {
+          "id": "d8pi2zdjan",
+          "name": "Other Food Items",
+          "group": "Food"
+        },
+        {
+          "id": "abuml74jan",
+          "name": "Gocery",
+          "group": "Grocery"
+        },
+        {
+          "id": "g4sx8tvjan",
+          "name": "Electricity",
+          "group": "Bills"
+        },
+        {
+          "id": "lmuwe4ojan",
+          "name": "House Rent",
+          "group": "Bills"
+        },
+        {
+          "id": "k6pdwsijan",
+          "name": "Internet",
+          "group": "Bills"
+        },
+        {
+          "id": "y71pnqajan",
+          "name": "Mobile Phone",
+          "group": "Bills"
+        },
+        {
+          "id": "gw6m0i6jan",
+          "name": "Home Appliances",
+          "group": "Home Appliances"
+        },
+        {
+          "id": "xwgg2b7jan",
+          "name": "Transportation",
+          "group": "Transportation"
+        },
+        {
+          "id": "c9mtpypjan",
+          "name": "Education",
+          "group": "Education"
+        },
+        {
+          "id": "mf5udaajan",
+          "name": "Tax",
+          "group": "Tax"
+        },
+        {
+          "id": "zfaoui6jan",
+          "name": "Insurance",
+          "group": "Insurance"
+        },
+        {
+          "id": "x8yz9cvjan",
+          "name": "Bangladesh",
+          "group": "Bangladesh"
+        },
+        {
+          "id": "rojvc0xjan",
+          "name": "Charity",
+          "group": "Charity"
+        },
+        {
+          "id": "4huvn2njan",
+          "name": "Clothings",
+          "group": "Clothings"
+        },
+        {
+          "id": "l87gm74jan",
+          "name": "Amar Hathkhoroch",
+          "group": "Others"
+        },
+        {
+          "id": "wftotvxjan",
+          "name": "Lily'r Hathkhoroch",
+          "group": "Others"
+        },
+        {
+          "id": "hyjeq6cjan",
+          "name": "Dhar disi",
+          "group": "Others"
+        },
+        {
+          "id": "ad9nvmljan",
+          "name": "Dhar Mitano",
+          "group": "Others"
+        },
+        {
+          "id": "ilbjf6xjan",
+          "name": "Not Accounted",
+          "group": "Others"
+        },
+        {
+          "id": "2cv47u1jan",
+          "name": "Investment",
+          "group": "Others"
+        },
+        {
+          "id": "n3m2mg9jan",
+          "name": "Inventory",
+          "group": "Others"
+        },
+        {
+          "id": "fe6lujvjan",
+          "name": "Others",
+          "group": "Others"
+        },
+        {
+          "id": "xcsdydhjan",
+          "name": "Savings",
+          "group": "Savings"
+        }
+      ],
+      "credit": {
+        "sources": [
+          {
+            "id": "y7awbk8jan",
+            "label": "Salary",
+            "amount": 1739.17,
+            "category": "Salary"
+          },
+          {
+            "id": "1ohufltjan",
+            "label": "Savings",
+            "amount": 1000,
+            "category": "Salary"
+          },
+          {
+            "id": "7hqqgnsjan",
+            "label": "From December",
+            "amount": 134.29,
+            "category": "Salary"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "gajwtsrjan",
+            "label": "Cash",
+            "amount": 84
+          },
+          {
+            "id": "l7sfyjrjan",
+            "label": "UAB",
+            "amount": 25
+          }
+        ]
+      },
+      "debit": {
+        "items": [
+          {
+            "id": "zbfx8x9jan",
+            "name": "Ammu",
+            "unitPrice": 500,
+            "qty": 1,
+            "category": "Bangladesh",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "lsfp8s0jan",
+            "name": "Auburn Islamic Center",
+            "unitPrice": 1,
+            "qty": 1,
+            "category": "Charity",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "ssce28ujan",
+            "name": "Limon Vaia",
+            "unitPrice": 100,
+            "qty": 1,
+            "category": "Others",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "v9iuy6ljan",
+            "name": "House Rent",
+            "unitPrice": 557.87,
+            "qty": 1,
+            "category": "House Rent",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "wvvnuavjao",
+            "name": "Lily Application Fee",
+            "unitPrice": 70,
+            "qty": 4,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "rzblz5zjao",
+            "name": "Electricity",
+            "unitPrice": 58.5,
+            "qty": 1,
+            "category": "Electricity",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "2gs4uabjao",
+            "name": "Internet",
+            "unitPrice": 46.99,
+            "qty": 1,
+            "category": "Internet",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "pkm8z4mjao",
+            "name": "Lily Mahr",
+            "unitPrice": 20,
+            "qty": 1,
+            "category": "Dhar Mitano",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "hgemdlnjao",
+            "name": "Ginger Garlic Paste",
+            "unitPrice": 8.27,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "bxzvsuwjao",
+            "name": "Cauliflower",
+            "unitPrice": 1.96,
+            "qty": 3,
+            "category": "Vegetables",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "hnnmhfnjao",
+            "name": "Onion 10lb",
+            "unitPrice": 7.25,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "gohviuujao",
+            "name": "Potato 10lb",
+            "unitPrice": 6.35,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "cy4btiujao",
+            "name": "Chicken 40lb",
+            "unitPrice": 30,
+            "qty": 1,
+            "category": "Protein",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "v890jiijao",
+            "name": "Grocery Tax",
+            "unitPrice": 5.2,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "pcpcjf4jao",
+            "name": "Coffee",
+            "unitPrice": 6.68,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "qshan1cjao",
+            "name": "Lemon Cake",
+            "unitPrice": 7.68,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "wzn2mtkjao",
+            "name": "Grocery Tax",
+            "unitPrice": 1.15,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "1flvbdyjao",
+            "name": "Apple 3lb",
+            "unitPrice": 4.24,
+            "qty": 1,
+            "category": "Fruits",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "a6zx8dzjao",
+            "name": "Cheese",
+            "unitPrice": 2.24,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "2bhxzl9jao",
+            "name": "Yogurt",
+            "unitPrice": 3.54,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "fk98m28jao",
+            "name": "Eggs 18pcs",
+            "unitPrice": 7.12,
+            "qty": 1,
+            "category": "Protein",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "qwfyh5tjao",
+            "name": "Milk",
+            "unitPrice": 3.07,
+            "qty": 2,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "9iwlcesjao",
+            "name": "Carrots 5lb",
+            "unitPrice": 3.98,
+            "qty": 1,
+            "category": "Vegetables",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "kd6dafajao",
+            "name": "Pineapple",
+            "unitPrice": 2.28,
+            "qty": 1,
+            "category": "Fruits",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "mtks20sjao",
+            "name": "Tomato 1.89lb",
+            "unitPrice": 1.85,
+            "qty": 1,
+            "category": "Vegetables",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "h4i0u62jao",
+            "name": "Grocery Tax",
+            "unitPrice": 2.83,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "8v2m0v8jao",
+            "name": "Chick Fill A",
+            "unitPrice": 3,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "hltj9gpjao",
+            "name": "Rose Tob",
+            "unitPrice": 7.99,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "27mx7xajao",
+            "name": "Cheese",
+            "unitPrice": 3.79,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "foddpirjao",
+            "name": "Bell Paper",
+            "unitPrice": 3.63,
+            "qty": 1,
+            "category": "Vegetables",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "iqaksygjao",
+            "name": "Grocery Tax",
+            "unitPrice": 1.31,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "bi56po1jao",
+            "name": "Dominos Pizza",
+            "unitPrice": 15.03,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "2yjqsdijao",
+            "name": "Chick Fill A",
+            "unitPrice": 4.62,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "g025q4cjao",
+            "name": "Elach",
+            "unitPrice": 8.79,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "qnsbmfjjao",
+            "name": "Moshla",
+            "unitPrice": 2.71,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "4fa868ojao",
+            "name": "Chick Fill A",
+            "unitPrice": 5.78,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "49nvyucjao",
+            "name": "ChatGPT",
+            "unitPrice": 21.8,
+            "qty": 1,
+            "category": "Education",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "iszlijijao",
+            "name": "BBQ Sauce",
+            "unitPrice": 2.98,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "a53gg11jao",
+            "name": "Chili Sauce",
+            "unitPrice": 1.48,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "r9rnvmdjao",
+            "name": "Tomato Ketchup",
+            "unitPrice": 1.28,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "exe9jffjao",
+            "name": "Grocery Tax",
+            "unitPrice": 0.46,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "u779uj6jao",
+            "name": "Eggs 18pcs",
+            "unitPrice": 6.16,
+            "qty": 1,
+            "category": "Protein",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "sf7tjd6jao",
+            "name": "Corn Strarch",
+            "unitPrice": 1.92,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "icuyi27jao",
+            "name": "Shrimp",
+            "unitPrice": 5.24,
+            "qty": 1,
+            "category": "Protein",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "rdqthjbjao",
+            "name": "Cheese Puffs",
+            "unitPrice": 2.86,
+            "qty": 3,
+            "category": "Carbs",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "bfhvhi6jap",
+            "name": "Oyster Sauce",
+            "unitPrice": 3.12,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "sp1q2bwjap",
+            "name": "Fish Sauce",
+            "unitPrice": 4.28,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "q0dx6sbjap",
+            "name": "Cookie Dough",
+            "unitPrice": 2.97,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "ltxky2rjap",
+            "name": "Evaporated Milk",
+            "unitPrice": 0.25,
+            "qty": 12,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "69g3hrjjap",
+            "name": "Grocery Tax",
+            "unitPrice": 2.82,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "wehrfpejap",
+            "name": "Beef 15lb",
+            "unitPrice": 65.87,
+            "qty": 1,
+            "category": "Protein",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "o409jwxjap",
+            "name": "Pizza",
+            "unitPrice": 11.98,
+            "qty": 1,
+            "category": "Amar Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "fimdh0mjap",
+            "name": "Flower Gift",
+            "unitPrice": 8.71,
+            "qty": 1,
+            "category": "Others",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "c57e6l2jap",
+            "name": "Coffee, Cheese etc",
+            "unitPrice": 23.9,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "8pq5stnjap",
+            "name": "Shanpapri",
+            "unitPrice": 3.26,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "9b8jgdojap",
+            "name": "Shanpapri",
+            "unitPrice": 3.26,
+            "qty": 2,
+            "category": "Charity",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "vguojp9jap",
+            "name": "Panera Coffee",
+            "unitPrice": 3.04,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "i69a0pajap",
+            "name": "Chick Fill A Coffee",
+            "unitPrice": 2.39,
+            "qty": 1,
+            "category": "Lily'r Hathkhoroch",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "ahfszb6jap",
+            "name": "Flour, Milk, Suger, Chips",
+            "unitPrice": 32.62,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "hq217n9jap",
+            "name": "Abbu",
+            "unitPrice": 500,
+            "qty": 1,
+            "category": "Bangladesh",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          }
+        ],
+        "reconciliation": [
+          {
+            "id": "3xqd6xojap",
+            "item": "Coffee",
+            "status": "Exact Match",
+            "amount": 6.68
+          },
+          {
+            "id": "e1zpv1ejap",
+            "item": "Chips",
+            "status": "Partial Match",
+            "amount": 32.62
+          }
+        ]
+      },
+      "loans": {
+        "total": 0,
+        "entries": [
+          {
+            "id": "w3v6ommjap",
+            "label": "Lily Mahr",
+            "value": "300101 Taka",
+            "notes": ""
+          },
+          {
+            "id": "xvz6dx4jap",
+            "label": "Gold held",
+            "value": "57.683 g 24k Gold",
+            "notes": ""
+          },
+          {
+            "id": "fgtrnh2jap",
+            "label": "Gold rate",
+            "value": "5,202.59 tk/g",
+            "notes": ""
+          },
+          {
+            "id": "relevzfjap",
+            "label": "Ring",
+            "value": "16000tk / 5202.59",
+            "notes": ""
+          },
+          {
+            "id": "ixb0qtnjap",
+            "label": "7 Jan, 25",
+            "value": "20 d / 85.53 d",
+            "notes": ""
+          }
+        ]
+      },
+      "savings": {
+        "total": 0,
+        "entries": []
+      },
+      "investment": {
+        "total": 0,
+        "roi": 0,
+        "entries": []
+      },
+      "collectable": {
+        "total": 0,
+        "entries": []
+      },
+      "incomeCategories": [
+        {
+          "id": "mw78zmflu3",
+          "name": "Salary"
+        },
+        {
+          "id": "rlkxk5ilu3",
+          "name": "Gift"
+        },
+        {
+          "id": "64egcpilu3",
+          "name": "Other"
+        }
+      ],
+      "cards": []
+    },
+    "ml6bh9uun9p": {
+      "label": "June 2026",
+      "groups": [
+        "Food",
+        "Grocery",
+        "Bills",
+        "Home Appliances",
+        "Transportation",
+        "Education",
+        "Tax",
+        "Insurance",
+        "Bangladesh",
+        "Charity",
+        "Clothings",
+        "Others",
+        "Savings",
+        "Child Rearing"
+      ],
+      "categories": [
+        {
+          "id": "685h6urn9p",
+          "name": "Protein",
+          "group": "Food"
+        },
+        {
+          "id": "h5iktfzn9p",
+          "name": "Vegetables",
+          "group": "Food"
+        },
+        {
+          "id": "s4vf17ln9p",
+          "name": "Carbs",
+          "group": "Food"
+        },
+        {
+          "id": "7l54jhcn9p",
+          "name": "Fruits",
+          "group": "Food"
+        },
+        {
+          "id": "anzewqvn9p",
+          "name": "Other Food Items",
+          "group": "Food"
+        },
+        {
+          "id": "1eu93srn9p",
+          "name": "Gocery",
+          "group": "Grocery"
+        },
+        {
+          "id": "msemtjyn9p",
+          "name": "Electricity",
+          "group": "Bills"
+        },
+        {
+          "id": "a01upp2n9p",
+          "name": "House Rent",
+          "group": "Bills"
+        },
+        {
+          "id": "1mz41bln9p",
+          "name": "Internet",
+          "group": "Bills"
+        },
+        {
+          "id": "u2bfo01n9p",
+          "name": "Mobile Phone",
+          "group": "Bills"
+        },
+        {
+          "id": "y493gamn9p",
+          "name": "Home Appliances",
+          "group": "Home Appliances"
+        },
+        {
+          "id": "kvxharpn9p",
+          "name": "Transportation",
+          "group": "Transportation"
+        },
+        {
+          "id": "xdg2xsan9p",
+          "name": "Education",
+          "group": "Education"
+        },
+        {
+          "id": "jhu3b6qn9p",
+          "name": "Tax",
+          "group": "Tax"
+        },
+        {
+          "id": "me18lrvn9p",
+          "name": "Insurance",
+          "group": "Insurance"
+        },
+        {
+          "id": "5adkpudn9p",
+          "name": "Bangladesh",
+          "group": "Bangladesh"
+        },
+        {
+          "id": "nwqjn5nn9p",
+          "name": "Charity",
+          "group": "Charity"
+        },
+        {
+          "id": "soedldxn9p",
+          "name": "Clothings",
+          "group": "Clothings"
+        },
+        {
+          "id": "nm7qonvn9p",
+          "name": "Amar Hathkhoroch",
+          "group": "Others"
+        },
+        {
+          "id": "hdvofwln9p",
+          "name": "Lily'r Hathkhoroch",
+          "group": "Others"
+        },
+        {
+          "id": "s6y0sg5n9p",
+          "name": "Dhar disi",
+          "group": "Others"
+        },
+        {
+          "id": "6x30p9un9p",
+          "name": "Dhar Mitano",
+          "group": "Others"
+        },
+        {
+          "id": "9dyug2vn9p",
+          "name": "Not Accounted",
+          "group": "Others"
+        },
+        {
+          "id": "my3g8osn9p",
+          "name": "Investment",
+          "group": "Others"
+        },
+        {
+          "id": "osy3k4tn9p",
+          "name": "Inventory",
+          "group": "Others"
+        },
+        {
+          "id": "wn04rjhn9p",
+          "name": "Others",
+          "group": "Others"
+        },
+        {
+          "id": "bztofq5n9p",
+          "name": "Savings",
+          "group": "Savings"
+        },
+        {
+          "id": "4ql9cxrxtb",
+          "name": "Maryam",
+          "group": "Child Rearing"
+        },
+        {
+          "id": "zy08owmrge",
+          "name": "Interest Payment",
+          "group": "Bills"
+        }
+      ],
+      "incomeCategories": [
+        {
+          "id": "u3e5cs4n9q",
+          "name": "Salary"
+        },
+        {
+          "id": "tmp839ln9q",
+          "name": "Gift"
+        },
+        {
+          "id": "qke7c7qn9q",
+          "name": "Other"
+        }
+      ],
+      "credit": {
+        "sources": [
+          {
+            "id": "wamefw3j41",
+            "label": "June Salary",
+            "amount": 1974,
+            "category": "Salary"
+          },
+          {
+            "id": "zs7j5n2tez",
+            "label": "Lily",
+            "amount": 1200,
+            "category": "Gift"
+          }
+        ],
+        "accounts": []
+      },
+      "debit": {
+        "items": [
+          {
+            "id": "naqyi7fihx",
+            "name": "Topu Vai",
+            "unitPrice": 24,
+            "qty": 1,
+            "category": "Maryam",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "ep4utwxrge",
+            "name": "Amazon Interest Payment",
+            "unitPrice": 14.48,
+            "qty": 1,
+            "category": "Interest Payment",
+            "justified": false,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "imqgfvt2kx",
+            "name": "City Payment",
+            "unitPrice": 41,
+            "qty": 1,
+            "category": "Home Appliances",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "guifa6xpaj",
+            "name": "Discover Payment",
+            "unitPrice": 336.02,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "iw0lx7tmp6",
+            "name": "Chase Freedom Account",
+            "unitPrice": 40,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "58ilutpeyd",
+            "name": "Milk",
+            "unitPrice": 3.82,
+            "qty": 2,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "j0fwgejsys",
+            "name": "Apple Juice",
+            "unitPrice": 2.27,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": false,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "qmb3pqqgz5",
+            "name": "Soda Water",
+            "unitPrice": 0.84,
+            "qty": 1,
+            "category": "Other Food Items",
+            "justified": false,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "kcvpwmjukz",
+            "name": "Croissant",
+            "unitPrice": 3.44,
+            "qty": 1,
+            "category": "Carbs",
+            "justified": false,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "9vvovtfoir",
+            "name": "Pear",
+            "unitPrice": 1.52,
+            "qty": 1,
+            "category": "Fruits",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "qrst7gq9rt",
+            "name": "Orange 3lb",
+            "unitPrice": 4.48,
+            "qty": 1,
+            "category": "Fruits",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "1p0ww5ircs",
+            "name": "Onion",
+            "unitPrice": 2.94,
+            "qty": 2,
+            "category": "Other Food Items",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "lytdprsf6w",
+            "name": "Eggplant",
+            "unitPrice": 3.88,
+            "qty": 1,
+            "category": "Vegetables",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "gt97smuwj0",
+            "name": "Cucumber",
+            "unitPrice": 0.98,
+            "qty": 1,
+            "category": "Vegetables",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "x5qh4o8p6l",
+            "name": "Grocery tax",
+            "unitPrice": 1.66,
+            "qty": 1,
+            "category": "Gocery",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "joe1276hsb",
+            "name": "Topu vai",
+            "unitPrice": 12,
+            "qty": 1,
+            "category": "Maryam",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "x5vwsvnypl",
+            "name": "Abbu",
+            "unitPrice": 1638.46,
+            "qty": 1,
+            "category": "Bangladesh",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          },
+          {
+            "id": "mdt1887mha",
+            "name": "Capital One Payment",
+            "unitPrice": 29,
+            "qty": 1,
+            "category": "Electricity",
+            "justified": true,
+            "paymentMethod": "cash",
+            "cardPaymentTo": ""
+          }
+        ],
+        "reconciliation": []
+      },
+      "loans": {
+        "total": 0,
+        "entries": []
+      },
+      "savings": {
+        "total": 0,
+        "entries": []
+      },
+      "investment": {
+        "total": 0,
+        "roi": 0,
+        "entries": []
+      },
+      "collectable": {
+        "total": 0,
+        "entries": []
+      },
+      "cards": []
     }
-  };
+  }
+};
+  // Make activeTab default to overview, not whatever was last open
+  snapshot.activeTab = "overview";
+  return JSON.parse(JSON.stringify(snapshot));  // deep clone to avoid shared refs
 }
 
 /* ---------- state ---------- */
@@ -684,6 +1987,7 @@ function load(){
     if(raw){ state = JSON.parse(raw); migrate(); return; }
   }catch(e){ console.warn("load failed",e); }
   state = defaultData();
+  migrate();   // ensure new fields exist even on a fresh embedded snapshot
   save();
 }
 function migrate(){
@@ -702,18 +2006,70 @@ function migrate(){
     m.credit = m.credit || {sources:[],accounts:[]};
     m.credit.sources = m.credit.sources || [];
     m.credit.accounts = m.credit.accounts || [];
-    // give any old source a category; drop the retired allocation-detail list
     var dfltCat = (m.incomeCategories[0]||{}).name || "Other";
-    m.credit.sources.forEach(function(s){ if(!s.category) s.category = dfltCat; });
+    m.credit.sources.forEach(function(s){
+      if(!s.category) s.category = dfltCat;
+      // NEW: every income source now records where the money landed.
+      // Default to "cash" for legacy data.
+      if(!s.paidTo) s.paidTo = "cash";
+    });
     if(m.credit.details) delete m.credit.details;
     m.debit = m.debit || {items:[],reconciliation:[]};
     m.debit.items = m.debit.items || [];
     m.debit.reconciliation = m.debit.reconciliation || [];
+    m.debit.items.forEach(function(it){
+      // Rename paymentMethod -> paidWith (more accurate; matches UI label).
+      if(!it.paidWith){
+        it.paidWith = it.paymentMethod || "cash";
+      }
+      if(it.paymentMethod) delete it.paymentMethod;
+      if(it.cardPaymentTo == null) it.cardPaymentTo = "";
+    });
+    // NEW: the Current tab's pools.
+    m.current = m.current || {};
+    m.current.cash = m.current.cash || {baseBalance:0};
+    if(m.current.cash.baseBalance == null) m.current.cash.baseBalance = 0;
+    m.current.debitAccounts = m.current.debitAccounts || [];
+    m.current.debitAccounts.forEach(function(d){
+      if(d.baseBalance == null) d.baseBalance = 0;
+      if(d.notes == null) d.notes = "";
+    });
+    // Cards now live under m.current.cards (moved from m.cards). Simpler schema:
+    // just name, baseBalance, notes — no statementBalance or dueDate.
+    if(!m.current.cards){
+      var oldCards = m.cards || [];
+      m.current.cards = oldCards.map(function(c){
+        return {id:c.id||uid(), name:c.name||"", baseBalance:num(c.startingBalance||0), notes:c.notes||""};
+      });
+    }
+    m.current.cards.forEach(function(c){
+      if(c.baseBalance == null) c.baseBalance = num(c.startingBalance||0);
+      if(c.notes == null) c.notes = "";
+      // strip retired fields
+      if("startingBalance" in c) delete c.startingBalance;
+      if("statementBalance" in c) delete c.statementBalance;
+      if("dueDate" in c) delete c.dueDate;
+    });
+    // remove old top-level m.cards array
+    if(m.cards) delete m.cards;
+    // Migrate old credit.accounts (Cash/UAB) into debit accounts if not done.
+    // Only do this once: if debitAccounts is empty AND we have credit.accounts.
+    if((m.current.debitAccounts||[]).length===0 && (m.credit.accounts||[]).length>0){
+      m.credit.accounts.forEach(function(a){
+        // Don't double-create if a "Cash" label and we already had cash setup
+        if((a.label||"").toLowerCase()==="cash"){
+          m.current.cash.baseBalance = num(a.amount);
+        } else {
+          m.current.debitAccounts.push({id:uid(),name:a.label||"Account",baseBalance:num(a.amount),notes:""});
+        }
+      });
+      // Wipe legacy after migrating — keeps things clean.
+      m.credit.accounts = [];
+    }
     m.loans = m.loans || {total:0,entries:[]};
     m.savings = m.savings || {total:0,entries:[]};
     m.investment = m.investment || {total:0,roi:0,entries:[]};
     m.collectable = m.collectable || {total:0,entries:[]};
-    // ensure every asset entry has a notes field
     ["loans","savings","investment","collectable"].forEach(function(pk){
       (m[pk].entries||[]).forEach(function(en){ if(en.notes==null) en.notes=""; });
     });
@@ -731,18 +2087,217 @@ function M(){ return state.months[state.activeMonth]; }
 
 /* ---------- computations ---------- */
 function creditTotal(m){ var s=0,a=m.credit.sources||[]; for(var i=0;i<a.length;i++) s+=num(a[i].amount); return s; }
-function accountsTotal(m){ var s=0,a=m.credit.accounts||[]; for(var i=0;i<a.length;i++) s+=num(a[i].amount); return s; }
 function assetTotal(m,key){ return num((m[key]||{}).total); }
 function itemTotal(it){ return num(it.unitPrice)*num(it.qty); }
-function debitTotal(m){ var s=0,a=m.debit.items||[]; for(var i=0;i<a.length;i++) s+=itemTotal(a[i]); return s; }
+
+/* A card payment is a transfer between buckets, not a real expense. It should
+   NOT contribute to monthly "Total Debit", justified/unjustified sums, or
+   category totals — those track new spending. Pool live balances still reflect
+   the movement (source pool drops, target card's owed drops by the same amount,
+   so net worth is unchanged). */
+function isCardPayment(it){ return !!it.cardPaymentTo; }
+
+function debitTotal(m){
+  // Real spending only — excludes card payments (those settle past debt).
+  var s=0,a=m.debit.items||[];
+  for(var i=0;i<a.length;i++) if(!isCardPayment(a[i])) s+=itemTotal(a[i]);
+  return s;
+}
+function cardPaymentsTotal(m){
+  var s=0,a=m.debit.items||[];
+  for(var i=0;i<a.length;i++) if(isCardPayment(a[i])) s+=itemTotal(a[i]);
+  return s;
+}
 function balance(m){ return creditTotal(m)-debitTotal(m); }
-function justifiedTotal(m){ var s=0,a=m.debit.items||[]; for(var i=0;i<a.length;i++) if(a[i].justified) s+=itemTotal(a[i]); return s; }
-function unjustifiedTotal(m){ var s=0,a=m.debit.items||[]; for(var i=0;i<a.length;i++) if(!a[i].justified) s+=itemTotal(a[i]); return s; }
+
+/* ============================================================
+   POOL-AWARE LEDGER
+   Each expense and each income carries a "paidWith" / "paidTo"
+   reference: "cash" (single cash pool), a debit account id,
+   or a credit card id. The Current tab's three sections all
+   derive their live balances from these references plus a
+   manually-set baseBalance.
+   ============================================================ */
+
+/* What kind of pool does an id refer to in this month? */
+function poolKind(m,id){
+  if(!id || id==="cash") return "cash";
+  var i;
+  for(i=0;i<(m.current.debitAccounts||[]).length;i++)
+    if(m.current.debitAccounts[i].id===id) return "debit";
+  for(i=0;i<(m.current.cards||[]).length;i++)
+    if(m.current.cards[i].id===id) return "card";
+  return "unknown";
+}
+function debitAccountById(m,id){
+  var a=(m.current.debitAccounts||[]);
+  for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i];
+  return null;
+}
+function cardById(m,id){
+  var a=(m.current.cards||[]);
+  for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i];
+  return null;
+}
+function poolName(m,id){
+  if(!id || id==="cash") return "Cash";
+  var d=debitAccountById(m,id); if(d) return d.name||"Debit";
+  var c=cardById(m,id); if(c) return c.name||"Card";
+  return "Unknown";
+}
+
+/* What's the entry's paidWith reference? Treat missing/legacy as cash. */
+function paidWith(it){ return it.paidWith || it.paymentMethod || "cash"; }
+
+/* === This-month sums by pay method (rolling totals) === */
+// Regular expense out of cash (not a card payment from cash).
+function cashSpentTotal(m){
+  var s=0,a=m.debit.items||[],i,it;
+  for(i=0;i<a.length;i++){
+    it=a[i];
+    if(paidWith(it)==="cash" && !it.cardPaymentTo) s += itemTotal(it);
+  }
+  return s;
+}
+// Money charged to a debit account this month (not card payments).
+function debitSpentTotal(m){
+  var s=0,a=m.debit.items||[],i,it;
+  for(i=0;i<a.length;i++){
+    it=a[i];
+    if(poolKind(m,paidWith(it))==="debit" && !it.cardPaymentTo) s += itemTotal(it);
+  }
+  return s;
+}
+// Money charged to a credit card this month.
+function creditCardSpentTotal(m){
+  var s=0,a=m.debit.items||[],i,it;
+  for(i=0;i<a.length;i++){
+    it=a[i];
+    if(poolKind(m,paidWith(it))==="card" && !it.cardPaymentTo) s += itemTotal(it);
+  }
+  return s;
+}
+// Total paid down from cash/debit toward any card this month.
+function cardPaymentsFromCashAndDebit(m){
+  var s=0,a=m.debit.items||[],i,it,k;
+  for(i=0;i<a.length;i++){
+    it=a[i];
+    if(!it.cardPaymentTo) continue;
+    k=poolKind(m,paidWith(it));
+    if(k==="cash" || k==="debit") s += itemTotal(it);
+  }
+  return s;
+}
+
+/* === Income totals by destination pool === */
+function incomeToPool(m,poolId){
+  var s=0,a=m.credit.sources||[],i;
+  for(i=0;i<a.length;i++){
+    var target = a[i].paidTo || "cash";
+    if(target===poolId) s += num(a[i].amount);
+  }
+  return s;
+}
+
+/* === Expense totals by paying pool === */
+function expensesFromPool(m,poolId){
+  var s=0,a=m.debit.items||[],i;
+  for(i=0;i<a.length;i++){
+    if(paidWith(a[i])===poolId && !a[i].cardPaymentTo) s += itemTotal(a[i]);
+  }
+  return s;
+}
+function cardPaymentsFromPool(m,poolId){
+  var s=0,a=m.debit.items||[],i;
+  for(i=0;i<a.length;i++){
+    if(a[i].cardPaymentTo && paidWith(a[i])===poolId) s += itemTotal(a[i]);
+  }
+  return s;
+}
+
+/* === Live balances === */
+// Cash live = base + income to cash - expenses paid w/ cash - card payments from cash
+function cashLiveBalance(m){
+  return num(m.current.cash.baseBalance)
+       + incomeToPool(m,"cash")
+       - expensesFromPool(m,"cash")
+       - cardPaymentsFromPool(m,"cash");
+}
+function debitAccountLiveBalance(m,accId){
+  var a=debitAccountById(m,accId); if(!a) return 0;
+  return num(a.baseBalance)
+       + incomeToPool(m,accId)
+       - expensesFromPool(m,accId)
+       - cardPaymentsFromPool(m,accId);
+}
+// Card charges (this month) = expenses paid with that card (not card payments)
+function cardChargesThisMonth(m,cardId){
+  var s=0,a=m.debit.items||[],i;
+  for(i=0;i<a.length;i++){
+    if(paidWith(a[i])===cardId && !a[i].cardPaymentTo) s += itemTotal(a[i]);
+  }
+  return s;
+}
+// Payments toward this card = any expense with cardPaymentTo=this card, minus any income going TO this card (cashback)
+function cardPaymentsThisMonth(m,cardId){
+  var s=0,a=m.debit.items||[],i;
+  for(i=0;i<a.length;i++){
+    if(a[i].cardPaymentTo===cardId) s += itemTotal(a[i]);
+  }
+  return s;
+}
+function cardCashbackThisMonth(m,cardId){
+  return incomeToPool(m,cardId);  // income tagged paidTo=card lowers what's owed
+}
+// Card live overdue = base + new charges - payments - cashback
+function cardLiveBalance(m,cardId){
+  var c=cardById(m,cardId); if(!c) return 0;
+  return num(c.baseBalance)
+       + cardChargesThisMonth(m,cardId)
+       - cardPaymentsThisMonth(m,cardId)
+       - cardCashbackThisMonth(m,cardId);
+}
+
+/* === Aggregates === */
+function debitAccountsTotal(m){
+  var s=0,a=(m.current.debitAccounts||[]),i;
+  for(i=0;i<a.length;i++) s += debitAccountLiveBalance(m,a[i].id);
+  return s;
+}
+function cardsOwedTotal(m){
+  var s=0,a=(m.current.cards||[]),i;
+  for(i=0;i<a.length;i++) s += cardLiveBalance(m,a[i].id);
+  return s;
+}
+function netWorth(m){
+  // Liquid assets (cash + debit accounts) - liabilities (loans + cards)
+  // + long-term assets (savings + investment + collectable)
+  return cashLiveBalance(m)
+       + debitAccountsTotal(m)
+       + assetTotal(m,"savings")
+       + assetTotal(m,"investment")
+       + assetTotal(m,"collectable")
+       - assetTotal(m,"loans")
+       - cardsOwedTotal(m);
+}
+
+function justifiedTotal(m){
+  var s=0,a=m.debit.items||[];
+  for(var i=0;i<a.length;i++) if(a[i].justified && !isCardPayment(a[i])) s+=itemTotal(a[i]);
+  return s;
+}
+function unjustifiedTotal(m){
+  var s=0,a=m.debit.items||[];
+  for(var i=0;i<a.length;i++) if(!a[i].justified && !isCardPayment(a[i])) s+=itemTotal(a[i]);
+  return s;
+}
 function categoryTotals(m){
+  // Exclude card payments — they're transfers, not categorized spending.
   var map={},i;
   for(i=0;i<(m.categories||[]).length;i++) map[m.categories[i].name]=0;
   for(i=0;i<(m.debit.items||[]).length;i++){
     var it=m.debit.items[i];
+    if(isCardPayment(it)) continue;
     map[it.category]=(map[it.category]||0)+itemTotal(it);
   }
   return map;
@@ -788,10 +2343,11 @@ function render(){
   for(i=0;i<screens.length;i++) screens[i].classList.remove("active");
   var scr=$("#screen-"+state.activeTab);
   if(scr) scr.classList.add("active");
-  var fabTabs=["credit","debit","assets"];
+  var fabTabs=["credit","debit","assets","current"];
   $("#fab").style.display = fabTabs.indexOf(state.activeTab)>=0 ? "grid":"none";
 
   if(state.activeTab==="overview") renderOverview();
+  else if(state.activeTab==="current") renderCurrent();
   else if(state.activeTab==="credit") renderCredit();
   else if(state.activeTab==="debit") renderDebit();
   else if(state.activeTab==="analysis") renderAnalysis();
@@ -817,14 +2373,14 @@ function renderOverview(){
     .filter(function(p){ return p[1]>0; })
     .sort(function(a,b){ return b[1]-a[1]; }).slice(0,6);
   var topMax=top.length?top[0][1]:1;
-  var nSrc=(m.credit.sources||[]).length;
-  var nItems=(m.debit.items||[]).length;
-  var loanT=assetTotal(m,"loans"), saveT=assetTotal(m,"savings"), invT=assetTotal(m,"investment");
-  function entCount(k){ return (m[k].entries||[]).length; }
+  var loanT=assetTotal(m,"loans"), saveT=assetTotal(m,"savings"), invT=assetTotal(m,"investment"), colT=assetTotal(m,"collectable");
+  var cashLive=cashLiveBalance(m), debitTot=debitAccountsTotal(m), cardsOwed=cardsOwedTotal(m), nw=netWorth(m);
+  var cashSp=cashSpentTotal(m), debSp=debitSpentTotal(m), cardSp=creditCardSpentTotal(m);
 
   $("#screen-overview").innerHTML =
+  /* ----- HERO 1: THIS MONTH ----- */
   '<div class="hero">'+
-    '<div class="hl">Balance Remaining</div>'+
+    '<div class="hl">This Month &middot; Balance</div>'+
     '<div class="hv num">'+curSpan()+fmt(bal)+'</div>'+
     '<div class="hsub"><span><b>'+fpct(bpct)+'</b> of credit kept</span><span>'+esc(m.label)+'</span></div>'+
     '<div class="compare">'+
@@ -837,30 +2393,48 @@ function renderOverview(){
     '</div>'+
   '</div>'+
 
-  '<div class="stat-grid">'+
-    '<div class="stat-card pos" data-act="goto" data-tab="credit">'+
-      '<div class="label"><span class="dotg">&#9679;</span> Total Credit</div>'+
-      '<div class="value num">'+curSpan()+fmt(cr)+'</div>'+
-      '<div class="meta">'+nSrc+' income source'+(nSrc===1?"":"s")+'</div></div>'+
-    '<div class="stat-card neg" data-act="goto" data-tab="debit">'+
-      '<div class="label"><span class="dotr">&#9679;</span> Total Debit</div>'+
-      '<div class="value num">'+curSpan()+fmt(db)+'</div>'+
-      '<div class="meta">'+nItems+' expense entr'+(nItems===1?"y":"ies")+'</div></div>'+
+  /* ----- This month: spent by method (3 cards) ----- */
+  '<div class="stat-grid-3">'+
+    '<div class="stat-card mini" data-act="goto" data-tab="current">'+
+      '<div class="label">Cash spent</div>'+
+      '<div class="value num" style="color:var(--ink)">'+curSpan()+fmt(cashSp)+'</div>'+
+      '<div class="meta">this month</div></div>'+
+    '<div class="stat-card mini" data-act="goto" data-tab="current">'+
+      '<div class="label">Debit spent</div>'+
+      '<div class="value num" style="color:var(--ink)">'+curSpan()+fmt(debSp)+'</div>'+
+      '<div class="meta">this month</div></div>'+
+    '<div class="stat-card mini" data-act="goto" data-tab="current">'+
+      '<div class="label">Credit spent</div>'+
+      '<div class="value num" style="color:var(--rust-deep)">'+curSpan()+fmt(cardSp)+'</div>'+
+      '<div class="meta">this month</div></div>'+
   '</div>'+
 
-  '<div class="stat-grid-3">'+
-    '<div class="stat-card mini" data-act="goto" data-tab="assets">'+
-      '<div class="label">Loans</div>'+
-      '<div class="value num">'+curSpan()+fmt(loanT)+'</div>'+
-      '<div class="meta">'+entCount("loans")+' entr'+(entCount("loans")===1?"y":"ies")+'</div></div>'+
-    '<div class="stat-card mini" data-act="goto" data-tab="assets">'+
-      '<div class="label">Savings</div>'+
-      '<div class="value num">'+curSpan()+fmt(saveT)+'</div>'+
-      '<div class="meta">'+entCount("savings")+' entr'+(entCount("savings")===1?"y":"ies")+'</div></div>'+
-    '<div class="stat-card mini" data-act="goto" data-tab="assets">'+
-      '<div class="label">Investment</div>'+
-      '<div class="value num">'+curSpan()+fmt(invT)+'</div>'+
-      '<div class="meta">ROI '+fmt0(num(m.investment.roi))+'</div></div>'+
+  /* ----- Liquid position strip ----- */
+  '<div class="liq-row">'+
+    '<div class="liq-card pos" data-act="goto" data-tab="current">'+
+      '<div class="liq-label">Cash + Debit Available</div>'+
+      '<div class="liq-val num">'+curSpan()+fmt(cashLive+debitTot)+'</div>'+
+      '<div class="liq-meta">Cash $'+fmt(cashLive)+' &middot; Debit $'+fmt(debitTot)+'</div></div>'+
+    '<div class="liq-card '+(cardsOwed>0?"neg":"")+'" data-act="goto" data-tab="current">'+
+      '<div class="liq-label">Cards Owed</div>'+
+      '<div class="liq-val num">'+curSpan()+fmt(cardsOwed)+'</div>'+
+      '<div class="liq-meta">'+(m.current.cards||[]).length+' card'+((m.current.cards||[]).length===1?"":"s")+'</div></div>'+
+  '</div>'+
+
+  /* ----- HERO 2: OVERALL NET WORTH ----- */
+  '<div class="hero hero-alt" data-act="goto" data-tab="assets">'+
+    '<div class="hl">Overall &middot; Net Worth</div>'+
+    '<div class="hv num">'+(nw<0?"-":"")+curSpan()+fmt(Math.abs(nw))+'</div>'+
+    '<div class="hsub"><span>assets minus liabilities</span><span>across everything</span></div>'+
+    '<div class="nw-rows">'+
+      '<div class="nw-row"><span class="nwl">Cash</span><span class="nwv num">+ $'+fmt(cashLive)+'</span></div>'+
+      '<div class="nw-row"><span class="nwl">Debit Accounts</span><span class="nwv num">+ $'+fmt(debitTot)+'</span></div>'+
+      '<div class="nw-row"><span class="nwl">Savings</span><span class="nwv num">+ $'+fmt(saveT)+'</span></div>'+
+      '<div class="nw-row"><span class="nwl">Investment</span><span class="nwv num">+ $'+fmt(invT)+'</span></div>'+
+      '<div class="nw-row"><span class="nwl">Collectable</span><span class="nwv num">+ $'+fmt(colT)+'</span></div>'+
+      '<div class="nw-row"><span class="nwl">Loans</span><span class="nwv neg num">- $'+fmt(loanT)+'</span></div>'+
+      '<div class="nw-row"><span class="nwl">Cards Owed</span><span class="nwv neg num">- $'+fmt(cardsOwed)+'</span></div>'+
+    '</div>'+
   '</div>'+
 
   '<div class="gauge-card" data-act="goto" data-tab="analysis">'+
@@ -888,23 +2462,111 @@ function renderOverview(){
   '<div class="divider-note">Tap any card to dive in &middot; everything is editable</div>';
 }
 
+/* ---------- CURRENT (Cash / Debit Accounts / Credit Cards) ---------- */
+function renderCurrent(){
+  var m=M();
+  var cashLive = cashLiveBalance(m);
+  var debitTot = debitAccountsTotal(m);
+  var cardsTot = cardsOwedTotal(m);
+
+  // --- Cash section: single pool with +/- and a base-balance editor ---
+  var cashSection =
+    '<div class="panel"><div class="panel-head">'+
+      '<div class="pt"><span class="pico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></span>Cash</div>'+
+      '<div class="panel-tot">Live <b class="num" style="color:#fff;margin-left:4px">$'+fmt(cashLive)+'</b></div>'+
+    '</div>'+
+    '<div class="panel-body" style="padding:14px">'+
+      '<div class="pool-big-row">'+
+        '<div class="pool-bigval pos num">'+curSpan()+fmt(cashLive)+'</div>'+
+        '<div class="pool-actions">'+
+          '<button class="pool-act-btn plus" data-act="adjust-pool" data-pool="cash" data-dir="plus" aria-label="Add cash">+</button>'+
+          '<button class="pool-act-btn minus" data-act="adjust-pool" data-pool="cash" data-dir="minus" aria-label="Subtract cash">&minus;</button>'+
+          '<button class="pool-act-btn edit" data-act="adjust-pool" data-pool="cash" data-dir="set" aria-label="Set total">Set</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="pool-flow">'+
+        '<span>Base <b class="num">$'+fmt(num(m.current.cash.baseBalance))+'</b></span>'+
+        '<span>+ In <b class="num">$'+fmt(incomeToPool(m,"cash"))+'</b></span>'+
+        '<span>&minus; Out <b class="num">$'+fmt(expensesFromPool(m,"cash")+cardPaymentsFromPool(m,"cash"))+'</b></span>'+
+      '</div>'+
+    '</div></div>';
+
+  // --- Debit Accounts section ---
+  var dbEntries = (m.current.debitAccounts||[]).map(function(a){
+    var live = debitAccountLiveBalance(m,a.id);
+    return '<div class="pool-item" data-act="edit" data-kind="debitAccount" data-id="'+a.id+'">'+
+      '<div class="pool-head">'+
+        '<div class="pool-name">'+(esc(a.name)||"Account")+'</div>'+
+        '<div class="pool-bal pos num">'+curSpan()+fmt(live)+'</div>'+
+      '</div>'+
+      '<div class="pool-flow">'+
+        '<span>Base <b class="num">$'+fmt(num(a.baseBalance))+'</b></span>'+
+        '<span>+ In <b class="num">$'+fmt(incomeToPool(m,a.id))+'</b></span>'+
+        '<span>&minus; Out <b class="num">$'+fmt(expensesFromPool(m,a.id)+cardPaymentsFromPool(m,a.id))+'</b></span>'+
+      '</div>'+
+      ((a.notes||"").trim()?'<div class="pool-notes">'+esc(a.notes)+'</div>':"")+
+    '</div>';
+  }).join("");
+  var debitSection =
+    '<div class="panel"><div class="panel-head">'+
+      '<div class="pt"><span class="pico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>Debit Accounts</div>'+
+      '<div class="panel-tot">Total <b class="num" style="color:#fff;margin-left:4px">$'+fmt(debitTot)+'</b></div>'+
+    '</div>'+
+    '<div class="panel-body" style="padding:11px">'+
+      (dbEntries||emptyRow("No debit accounts yet"))+
+      '<div class="foot-row" style="background:transparent;border-top:none;justify-content:center;padding:6px 0 6px;">'+
+        '<button class="add-btn" data-act="add" data-kind="debitAccount">'+PLUS+'Add debit account</button>'+
+      '</div>'+
+    '</div></div>';
+
+  // --- Credit Cards section ---
+  var cardEntries = (m.current.cards||[]).map(function(c){
+    var live = cardLiveBalance(m,c.id);
+    return '<div class="pool-item" data-act="edit" data-kind="card" data-id="'+c.id+'">'+
+      '<div class="pool-head">'+
+        '<div class="pool-name">'+(esc(c.name)||"Card")+'</div>'+
+        '<div class="pool-bal neg num">'+curSpan()+fmt(live)+'</div>'+
+      '</div>'+
+      '<div class="pool-flow">'+
+        '<span>Base <b class="num">$'+fmt(num(c.baseBalance))+'</b></span>'+
+        '<span>+ Charged <b class="num">$'+fmt(cardChargesThisMonth(m,c.id))+'</b></span>'+
+        '<span>&minus; Paid <b class="num">$'+fmt(cardPaymentsThisMonth(m,c.id))+'</b></span>'+
+        (cardCashbackThisMonth(m,c.id)>0?'<span>&minus; Cashback <b class="num">$'+fmt(cardCashbackThisMonth(m,c.id))+'</b></span>':"")+
+      '</div>'+
+      ((c.notes||"").trim()?'<div class="pool-notes">'+esc(c.notes)+'</div>':"")+
+    '</div>';
+  }).join("");
+  var cardsSection =
+    '<div class="panel"><div class="panel-head">'+
+      '<div class="pt"><span class="pico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 11h20M6 15h3"/></svg></span>Credit Cards</div>'+
+      '<div class="panel-tot">Owed <b class="num" style="color:#fff;margin-left:4px">$'+fmt(cardsTot)+'</b></div>'+
+    '</div>'+
+    '<div class="panel-body" style="padding:11px">'+
+      (cardEntries||emptyRow("No cards yet"))+
+      '<div class="foot-row" style="background:transparent;border-top:none;justify-content:center;padding:6px 0 6px;">'+
+        '<button class="add-btn" data-act="add" data-kind="card">'+PLUS+'Add credit card</button>'+
+      '</div>'+
+    '</div></div>';
+
+  $("#screen-current").innerHTML =
+  '<div class="pad"><div class="scr-title">Current &middot; What I Hold Now</div></div>'+
+  cashSection +
+  debitSection +
+  cardsSection +
+  '<div class="divider-note">All numbers update live from your Credit &amp; Debit entries</div>';
+}
+
 /* ---------- CREDIT ---------- */
 function renderCredit(){
   var m=M();
   var cr=creditTotal(m);
   var srcRows=(m.credit.sources||[]).map(function(s){
+    var dest = poolName(m, s.paidTo||"cash");
     return '<div class="row" data-act="edit" data-kind="creditSource" data-id="'+s.id+'">'+
       '<div class="row-body"><div class="row-name">'+(esc(s.label)||"<span style=\"color:var(--ink-faint)\">Untitled</span>")+
         ' <span class="tag">'+esc(s.category||"Other")+'</span></div>'+
-      '<div class="row-meta">'+fpct(pct(num(s.amount),cr))+' of total credit</div></div>'+
+      '<div class="row-meta">'+fpct(pct(num(s.amount),cr))+' &middot; <span class="pay-badge cash">&rarr; '+esc(dest)+'</span></div></div>'+
       '<div class="row-val pos num">'+curSpan()+fmt(num(s.amount))+'</div>'+CHEV+'</div>';
-  }).join("");
-
-  var accRows=(m.credit.accounts||[]).map(function(a){
-    return '<div class="row" data-act="edit" data-kind="creditAccount" data-id="'+a.id+'">'+
-      '<div class="row-body"><div class="row-name">'+(esc(a.label)||"Account")+'</div>'+
-      '<div class="row-meta">where balance sits</div></div>'+
-      '<div class="row-val num">'+curSpan()+fmt(num(a.amount))+'</div>'+CHEV+'</div>';
   }).join("");
 
   // income totals by category
@@ -920,6 +2582,19 @@ function renderCredit(){
       '<span class="bar-name">'+esc(p[0])+'</span>'+
       '<span class="bar-vals"><b class="num">$'+fmt(p[1])+'</b> &middot; '+fpct(pct(p[1],cr))+'</span></div>'+
       '<div class="bar-track"><div class="bar-fill g" style="width:'+pct(p[1],catMax)+'%"></div></div></div>';
+  }).join("");
+
+  // income totals by destination pool
+  var byPool={};
+  (m.credit.sources||[]).forEach(function(s){
+    var k=s.paidTo||"cash";
+    byPool[k]=(byPool[k]||0)+num(s.amount);
+  });
+  var poolHtml=Object.keys(byPool).map(function(pid){
+    return '<div class="bar-item"><div class="bar-top">'+
+      '<span class="bar-name">'+esc(poolName(m,pid))+'</span>'+
+      '<span class="bar-vals"><b class="num">$'+fmt(byPool[pid])+'</b> &middot; '+fpct(pct(byPool[pid],cr))+'</span></div>'+
+      '</div>';
   }).join("");
 
   $("#screen-credit").innerHTML =
@@ -943,35 +2618,58 @@ function renderCredit(){
     '<div class="card">'+(catHtml||emptyRow("No income yet"))+'</div></div>'+
 
   '<div class="section"><div class="section-head">'+
-    '<div class="section-title"><span class="acc"></span>Accounts</div>'+
-    '<button class="add-btn" data-act="add" data-kind="creditAccount">'+PLUS+'Add</button></div>'+
-    '<div class="card">'+(accRows||emptyRow("No accounts noted"))+
-      '<div class="foot-row"><span class="fl">In Accounts</span><span class="fv num">$'+fmt(accountsTotal(m))+'</span></div>'+
-    '</div></div>'+
-  '<div class="divider-note">Tap any line to edit &middot; income categories live in Settings</div>';
+    '<div class="section-title"><span class="acc"></span>Where It Landed</div>'+
+    '<div class="section-sub">by destination pool</div></div>'+
+    '<div class="card">'+(poolHtml||emptyRow("No income yet"))+'</div></div>'+
+  '<div class="divider-note">Tap any source to edit &middot; manage cards &amp; debit accounts on the Current tab</div>';
 }
 
 /* ---------- DEBIT ---------- */
-var debitFilter={q:"",cat:"All"};
+var debitFilter={q:"",cat:"All",pay:"All"};
 function renderDebit(){
   var m=M();
   var db=debitTotal(m), bal=balance(m);
   var items=(m.debit.items||[]);
+  var cashSp=cashSpentTotal(m), debSp=debitSpentTotal(m), cardSp=creditCardSpentTotal(m);
   var catSet={}, cats=["All"];
   items.forEach(function(i){ if(!catSet[i.category]){ catSet[i.category]=1; cats.push(i.category); } });
   var q=debitFilter.q.toLowerCase();
   var filtered=items.filter(function(it){
     if(debitFilter.cat!=="All" && it.category!==debitFilter.cat) return false;
+    var k = poolKind(m, paidWith(it));
+    if(debitFilter.pay==="cash" && k!=="cash") return false;
+    if(debitFilter.pay==="debit" && k!=="debit") return false;
+    if(debitFilter.pay==="card" && k!=="card") return false;
     if(q && (it.name||"").toLowerCase().indexOf(q)<0 && (it.category||"").toLowerCase().indexOf(q)<0) return false;
     return true;
   });
   var filtTotal=0; filtered.forEach(function(x){ filtTotal+=itemTotal(x); });
 
+  // Helper: render the payment-method badge for a debit row.
+  function payBadge(it){
+    if(it.cardPaymentTo){
+      var c=cardById(m,it.cardPaymentTo);
+      return '<span class="pay-badge payment" title="Card payment">&#8595; '+(c?esc(c.name):"Card Payment")+'</span>';
+    }
+    var pw = paidWith(it);
+    var kind = poolKind(m,pw);
+    if(kind==="cash") return '<span class="pay-badge cash">Cash</span>';
+    if(kind==="debit"){
+      var d=debitAccountById(m,pw);
+      return '<span class="pay-badge cash">'+(d?esc(d.name):"Debit")+'</span>';
+    }
+    if(kind==="card"){
+      var c2=cardById(m,pw);
+      return '<span class="pay-badge card">'+(c2?esc(c2.name):"Card")+'</span>';
+    }
+    return '<span class="pay-badge">?</span>';
+  }
+
   var itemRows=filtered.map(function(it){
     return '<div class="row" data-act="edit" data-kind="debitItem" data-id="'+it.id+'">'+
       '<div class="row-body"><div class="row-name">'+(esc(it.name)||"Item")+
         ' <span class="tag '+(it.justified?"j":"u")+'">'+(it.justified?"Justified":"Unjustified")+'</span></div>'+
-      '<div class="row-meta">'+esc(it.category)+' &middot; '+fmt0(num(it.qty))+' &times; $'+fmt(num(it.unitPrice))+'</div></div>'+
+      '<div class="row-meta">'+esc(it.category)+' &middot; '+fmt0(num(it.qty))+' &times; $'+fmt(num(it.unitPrice))+' &middot; '+payBadge(it)+'</div></div>'+
       '<div class="row-val neg num">'+curSpan()+fmt(itemTotal(it))+'</div>'+CHEV+'</div>';
   }).join("");
 
@@ -984,17 +2682,38 @@ function renderDebit(){
       '<div class="row-val num">'+curSpan()+fmt(num(r.amount))+'</div>'+CHEV+'</div>';
   }).join("");
 
+  // Compact card strip showing each card's current balance, tap to jump to Current.
+  var cardStripHtml="";
+  if(((m.current&&m.current.cards)||[]).length>0){
+    cardStripHtml='<div class="card-strip">'+
+      (m.current.cards||[]).map(function(c){
+        return '<div class="card-chip" data-act="goto" data-tab="current">'+
+          '<div class="cc-name">'+esc(c.name||"Card")+'</div>'+
+          '<div class="cc-bal num">$'+fmt(cardLiveBalance(m,c.id))+'</div>'+
+        '</div>';
+      }).join("")+
+    '</div>';
+  }
+
   $("#screen-debit").innerHTML =
   '<div class="pad"><div class="scr-title">Debit &middot; Expenses</div></div>'+
   '<div class="hero" style="margin-top:4px;background:linear-gradient(165deg,#AE5029,#85391B)">'+
     '<div class="hl" style="color:var(--gold-soft)">Total Debit</div>'+
     '<div class="hv num">'+curSpan()+fmt(db)+'</div>'+
-    '<div class="hsub"><span>'+items.length+' entries</span><span>Balance left <b>$'+fmt(bal)+'</b></span></div>'+
+    '<div class="hsub"><span><b>$'+fmt(cashSp)+'</b> cash &middot; <b>$'+fmt(debSp)+'</b> debit &middot; <b>$'+fmt(cardSp)+'</b> cards</span><span>'+items.length+' entries</span></div>'+
   '</div>'+
+
+  cardStripHtml+
 
   '<div class="section" style="margin-bottom:2px">'+
     '<div class="field" style="margin-bottom:10px">'+
       '<input type="search" id="debitSearch" placeholder="Search expenses..." value="'+esc(debitFilter.q)+'" style="background:var(--card)"></div>'+
+    '<div class="seg" style="margin:0 0 8px 0">'+
+      '<button class="'+(debitFilter.pay==="All"?"on":"")+'" data-act="debit-pay" data-pay="All">All</button>'+
+      '<button class="'+(debitFilter.pay==="cash"?"on":"")+'" data-act="debit-pay" data-pay="cash">Cash</button>'+
+      '<button class="'+(debitFilter.pay==="debit"?"on":"")+'" data-act="debit-pay" data-pay="debit">Debit</button>'+
+      '<button class="'+(debitFilter.pay==="card"?"on":"")+'" data-act="debit-pay" data-pay="card">Credit</button>'+
+    '</div>'+
     '<div style="display:flex;gap:7px;overflow-x:auto;padding:2px 0 4px;-webkit-overflow-scrolling:touch">'+
       cats.map(function(c){
         return '<button class="tag '+(debitFilter.cat===c?"j":"")+'" style="flex:none;padding:7px 11px;font-size:11px" data-act="debit-cat" data-cat="'+esc(c)+'">'+esc(c)+'</button>';
@@ -1006,15 +2725,18 @@ function renderDebit(){
     '<div class="section-title"><span class="acc"></span>Expenses</div>'+
     '<div class="section-sub">'+filtered.length+' shown &middot; $'+fmt(filtTotal)+'</div></div>'+
     '<div class="card">'+
-      (itemRows||emptyRow(q||debitFilter.cat!=="All"?"No matching expenses":"No expenses yet - tap + to add"))+
+      (itemRows||emptyRow(q||debitFilter.cat!=="All"||debitFilter.pay!=="All"?"No matching expenses":"No expenses yet - tap + to add"))+
       '<div class="foot-row"><span class="fl">Total Debit</span><span class="fv num">$'+fmt(db)+'</span></div>'+
+      (cardPaymentsTotal(m)>0?
+        '<div class="foot-row" style="background:transparent;border-top:1px dashed var(--line);padding-top:8px"><span class="fl" style="font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-soft);font-weight:500">Card payments (not counted)</span><span class="fv num" style="color:var(--ink-soft)">$'+fmt(cardPaymentsTotal(m))+'</span></div>'
+      :"")+
     '</div></div>'+
 
   '<div class="section"><div class="section-head">'+
     '<div class="section-title"><span class="acc"></span>Reconciliation</div>'+
     '<button class="add-btn" data-act="add" data-kind="reconciliation">'+PLUS+'Add</button></div>'+
     '<div class="card">'+(recRows||emptyRow("No reconciliation checks"))+'</div></div>'+
-  '<div class="divider-note">+ button adds an expense &middot; tap a row to edit it</div>';
+  '<div class="divider-note">+ adds an expense &middot; manage cash, debit &amp; cards on the Current tab</div>';
 
   var sb=$("#debitSearch");
   if(sb){
@@ -1144,7 +2866,7 @@ function renderAssets(){
   assetPanel(m,"savings","Savings",ic('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/>'))+
   assetPanel(m,"investment","Investment",ic('<path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/>'),roiExtra)+
   assetPanel(m,"collectable","Collectable",ic('<circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/>'))+
-  '<div class="divider-note">Totals &amp; ROI are typed in directly &middot; entries hold free-form notes (gold, taka, dates...)</div>';
+  '<div class="divider-note">Long-term holdings &amp; debts &middot; for cash, debit, &amp; credit cards see the Current tab</div>';
 }
 
 /* ---------- CATEGORIES MANAGER ---------- */
@@ -1300,10 +3022,26 @@ function openEdit(kind,id,panel){
   var m=M(), html="", isNew=!id;
 
   if(kind==="creditSource"){
-    var o=id?find(m.credit.sources,id):{label:"",amount:"",category:((m.incomeCategories[0]||{}).name||"")};
+    var o=id?find(m.credit.sources,id):{label:"",amount:"",category:((m.incomeCategories[0]||{}).name||""),paidTo:"cash"};
     var icOpts=(m.incomeCategories||[]).map(function(c){
       return '<option value="'+esc(c.name)+'"'+(c.name===o.category?" selected":"")+'>'+esc(c.name)+'</option>';
     }).join("");
+    // Pool options: Cash + any debit account + any credit card (cashback)
+    var poolOpts = '<option value="cash"'+((o.paidTo||"cash")==="cash"?" selected":"")+'>Cash</option>';
+    if((m.current.debitAccounts||[]).length){
+      poolOpts += '<optgroup label="Debit Accounts">';
+      (m.current.debitAccounts||[]).forEach(function(a){
+        poolOpts += '<option value="'+esc(a.id)+'"'+(o.paidTo===a.id?" selected":"")+'>'+esc(a.name||"Debit")+'</option>';
+      });
+      poolOpts += '</optgroup>';
+    }
+    if((m.current.cards||[]).length){
+      poolOpts += '<optgroup label="Credit Cards (cashback)">';
+      (m.current.cards||[]).forEach(function(c){
+        poolOpts += '<option value="'+esc(c.id)+'"'+(o.paidTo===c.id?" selected":"")+'>'+esc(c.name||"Card")+'</option>';
+      });
+      poolOpts += '</optgroup>';
+    }
     html='<div class="sheet-title">'+(isNew?"New Income Source":"Edit Income Source")+'</div>'+
       '<div class="sheet-desc">A line of money coming in this month.</div>'+
       sheetField("Source name","f_label",o.label,{ph:"e.g. January Salary"})+
@@ -1311,14 +3049,10 @@ function openEdit(kind,id,panel){
       '<div class="field"><label>Category</label>'+
         '<select id="f_category">'+icOpts+'</select>'+
         '<div class="hint">Edit this list in Settings &rarr; Income Categories.</div></div>'+
-      actionBar(kind,id,panel,isNew,!isNew);
-  }
-  else if(kind==="creditAccount"){
-    var o=id?find(m.credit.accounts,id):{label:"",amount:""};
-    html='<div class="sheet-title">'+(isNew?"New Account":"Edit Account")+'</div>'+
-      '<div class="sheet-desc">Where your remaining balance physically sits.</div>'+
-      sheetField("Account name","f_label",o.label,{ph:"e.g. Cash, UAB"})+
-      sheetField("Amount","f_amount",o.amount,{inputmode:"decimal",ph:"0.00"})+
+      '<div class="field"><label>Paid To</label>'+
+        '<select id="f_paidto">'+poolOpts+'</select>'+
+        '<div class="hint">Where the money lands. Cashback to a card reduces what you owe on it.</div>'+
+      '</div>'+
       actionBar(kind,id,panel,isNew,!isNew);
   }
   else if(kind==="incomeCategory"){
@@ -1331,10 +3065,32 @@ function openEdit(kind,id,panel){
       actionBar(kind,id,panel,isNew,!isNew);
   }
   else if(kind==="debitItem"){
-    var o=id?find(m.debit.items,id):{name:"",unitPrice:"",qty:1,category:((m.categories[0]||{}).name||""),justified:true};
+    var o=id?find(m.debit.items,id):{name:"",unitPrice:"",qty:1,category:((m.categories[0]||{}).name||""),justified:true,paidWith:(m.current.cards.length?m.current.cards[0].id:"cash"),cardPaymentTo:""};
     var catOpts=(m.categories||[]).map(function(c){
       return '<option value="'+esc(c.name)+'"'+(c.name===o.category?" selected":"")+'>'+esc(c.name)+'</option>';
     }).join("");
+    // "Paid With" pool options. Default to first card (credit) for new entries.
+    var pw = paidWith(o);
+    var payOpts = '<option value="cash"'+(pw==="cash"?" selected":"")+'>Cash</option>';
+    if((m.current.debitAccounts||[]).length){
+      payOpts += '<optgroup label="Debit">';
+      (m.current.debitAccounts||[]).forEach(function(a){
+        payOpts += '<option value="'+esc(a.id)+'"'+(pw===a.id?" selected":"")+'>'+esc(a.name||"Debit")+'</option>';
+      });
+      payOpts += '</optgroup>';
+    }
+    if((m.current.cards||[]).length){
+      payOpts += '<optgroup label="Credit Cards">';
+      (m.current.cards||[]).forEach(function(c){
+        payOpts += '<option value="'+esc(c.id)+'"'+(pw===c.id?" selected":"")+'>'+esc(c.name||"Card")+'</option>';
+      });
+      payOpts += '</optgroup>';
+    }
+    var cpToOpts='<option value="">- not a card payment -</option>';
+    (m.current.cards||[]).forEach(function(c){
+      cpToOpts += '<option value="'+esc(c.id)+'"'+(o.cardPaymentTo===c.id?" selected":"")+'>'+esc(c.name||"Card")+'</option>';
+    });
+    var isCardPayment = !!o.cardPaymentTo;
     html='<div class="sheet-title">'+(isNew?"New Expense":"Edit Expense")+'</div>'+
       '<div class="sheet-desc">Total is calculated as unit price &times; quantity.</div>'+
       sheetField("Item name","f_name",o.name,{ph:"e.g. Chicken 40lb"})+
@@ -1351,12 +3107,70 @@ function openEdit(kind,id,panel){
           '<input id="f_newgroup" list="dl_allgroups" placeholder="e.g. Bills">'+
           '<datalist id="dl_allgroups">'+(m.groups||[]).map(function(g){return '<option value="'+esc(g)+'">';}).join("")+'</datalist></div>'+
       '</div>'+
+      '<div class="field"><label>Paid With</label>'+
+        '<select id="f_paymethod">'+payOpts+'</select>'+
+        '<div class="hint">Cash &amp; debit subtract from those balances. A credit card adds to its overdue.</div>'+
+      '</div>'+
+      ((m.current.cards||[]).length>0?
+        '<label style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:6px">Card Payment</label>'+
+        '<div class="toggle-row">'+
+          '<button type="button" id="tg_cp_off" class="'+(!isCardPayment?"on-j":"")+'" data-tg="cp-off">Regular expense</button>'+
+          '<button type="button" id="tg_cp_on" class="'+(isCardPayment?"on-j":"")+'" data-tg="cp-on">Pays down a card</button>'+
+        '</div>'+
+        '<div id="cpWrap" style="display:'+(isCardPayment?"block":"none")+'">'+
+          '<div class="field"><label>Paying down which card?</label>'+
+            '<select id="f_cardpayto">'+cpToOpts+'</select>'+
+            '<div class="hint">This expense reduces that card\'s overdue balance. It is <b>not</b> counted in Total Debit, since the original purchase was already counted when it was charged to the card.</div>'+
+          '</div>'+
+        '</div>'
+      :"")+
       '<label style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:6px">Status</label>'+
       '<div class="toggle-row">'+
         '<button type="button" id="tg_j" class="'+(o.justified?"on-j":"")+'" data-tg="j">Justified</button>'+
         '<button type="button" id="tg_u" class="'+(!o.justified?"on-u":"")+'" data-tg="u">Unjustified</button>'+
       '</div>'+
       actionBar(kind,id,panel,isNew,!isNew);
+  }
+  else if(kind==="card"){
+    var o=id?cardById(m,id):{name:"",baseBalance:"",notes:""};
+    html='<div class="sheet-title">'+(isNew?"New Credit Card":"Edit Credit Card")+'</div>'+
+      '<div class="sheet-desc">Just name + current balance. Statement details live on your bank\'s app.</div>'+
+      sheetField("Card name","f_cardname",o.name,{ph:"e.g. Discover, Chase Freedom"})+
+      sheetField("Current balance","f_basebal",o.baseBalance,{inputmode:"decimal",ph:"0.00",
+        hint:"What you owe right now. Charges and payments adjust this automatically."})+
+      sheetTextarea("Notes (optional)","f_cardnotes",o.notes,{rows:3,ph:"APR, last 4 digits, statement date, anything you want to remember..."})+
+      actionBar(kind,id,panel,isNew,!isNew);
+  }
+  else if(kind==="debitAccount"){
+    var o=id?debitAccountById(m,id):{name:"",baseBalance:"",notes:""};
+    html='<div class="sheet-title">'+(isNew?"New Debit Account":"Edit Debit Account")+'</div>'+
+      '<div class="sheet-desc">Checking or any account whose balance is your money (not borrowed).</div>'+
+      sheetField("Account name","f_dname",o.name,{ph:"e.g. UAB Checking"})+
+      sheetField("Current balance","f_dbase",o.baseBalance,{inputmode:"decimal",ph:"0.00",
+        hint:"Income coming here adds, expenses paid with it subtract."})+
+      sheetTextarea("Notes (optional)","f_dnotes",o.notes,{rows:3,ph:"Account number suffix, bank, etc."})+
+      actionBar(kind,id,panel,isNew,!isNew);
+  }
+  else if(kind==="adjustPool"){
+    // panel = pool id ("cash" or debit account id), and "dir" passed via id="set"/"plus"/"minus"
+    // We use id field to carry the direction (since this kind has no entity id).
+    var dir = id; // "plus" | "minus" | "set"
+    var poolId = panel;
+    var current = poolId==="cash" ? cashLiveBalance(m) : debitAccountLiveBalance(m,poolId);
+    var name = poolId==="cash" ? "Cash" : (debitAccountById(m,poolId)||{}).name || "Account";
+    var titleMap = {plus:"Add to "+name, minus:"Subtract from "+name, set:"Set "+name+" total"};
+    var descMap = {
+      plus:"Add an amount — typically money received that wasn't logged as income (gift, refund, etc.).",
+      minus:"Subtract an amount — typically money lost or spent that wasn't logged as an expense.",
+      set:"Override the live balance to exactly this number. Adjusts the base to make the math work."
+    };
+    html='<div class="sheet-title">'+titleMap[dir]+'</div>'+
+      '<div class="sheet-desc">'+descMap[dir]+' Current live: <b class="num">$'+fmt(current)+'</b></div>'+
+      sheetField(dir==="set"?"New total":"Amount","f_adj","",{inputmode:"decimal",ph:"0.00"})+
+      '<div class="sheet-actions">'+
+        '<button class="btn btn-ghost" data-act="cancel">Cancel</button>'+
+        '<button class="btn btn-primary" data-act="save-adjust" data-pool="'+poolId+'" data-dir="'+dir+'">'+(dir==="set"?"Set":(dir==="plus"?"Add":"Subtract"))+'</button>'+
+      '</div>';
   }
   else if(kind==="reconciliation"){
     var o=id?find(m.debit.reconciliation,id):{item:"",status:"Exact Match",amount:""};
@@ -1423,6 +3237,16 @@ function openEdit(kind,id,panel){
     var jb=$("#tg_j"), ub=$("#tg_u");
     jb.addEventListener("click",function(){ jb.className="on-j"; ub.className=""; });
     ub.addEventListener("click",function(){ ub.className="on-u"; jb.className=""; });
+    // card-payment toggle (only present if there are cards)
+    var cpOff=$("#tg_cp_off"), cpOn=$("#tg_cp_on"), cpWrap=$("#cpWrap");
+    if(cpOff && cpOn && cpWrap){
+      cpOff.addEventListener("click",function(){
+        cpOff.className="on-j"; cpOn.className=""; cpWrap.style.display="none";
+      });
+      cpOn.addEventListener("click",function(){
+        cpOn.className="on-j"; cpOff.className=""; cpWrap.style.display="block";
+      });
+    }
   }
 }
 function find(arr,id){
@@ -1437,16 +3261,14 @@ function saveEdit(kind,id,panel){
 
   if(kind==="creditSource"){
     var label=val("f_label"), amount=num(val("f_amount")), category=val("f_category");
+    var paidTo=val("f_paidto")||"cash";
     if(!label){ toast("Give it a name"); return; }
     if(!category) category=((m.incomeCategories[0]||{}).name||"Other");
-    if(isNew) m.credit.sources.push({id:uid(),label:label,amount:amount,category:category});
-    else { var o=find(m.credit.sources,id); o.label=label; o.amount=amount; o.category=category; }
-  }
-  else if(kind==="creditAccount"){
-    var label=val("f_label"), amount=num(val("f_amount"));
-    if(!label){ toast("Give it a name"); return; }
-    if(isNew) m.credit.accounts.push({id:uid(),label:label,amount:amount});
-    else { var o=find(m.credit.accounts,id); o.label=label; o.amount=amount; }
+    if(isNew) m.credit.sources.push({id:uid(),label:label,amount:amount,category:category,paidTo:paidTo});
+    else {
+      var o=find(m.credit.sources,id);
+      o.label=label; o.amount=amount; o.category=category; o.paidTo=paidTo;
+    }
   }
   else if(kind==="incomeCategory"){
     var name=val("f_name");
@@ -1468,6 +3290,10 @@ function saveEdit(kind,id,panel){
     var name=val("f_name"), unit=num(val("f_unit")), qty=num(val("f_qty"));
     var cat=val("f_category");
     var justified = $("#tg_j").className==="on-j";
+    var paidWithVal = val("f_paymethod") || "cash";
+    var cpOn=$("#tg_cp_on");
+    var isCardPayment = !!(cpOn && cpOn.className==="on-j");
+    var cardPaymentTo = isCardPayment ? (val("f_cardpayto")||"") : "";
     if(!name){ toast("Give the expense a name"); return; }
     if(qty===0) qty=1;
     if(cat==="__new__"){
@@ -1479,8 +3305,46 @@ function saveEdit(kind,id,panel){
       }
       cat=nc;
     }
-    if(isNew) m.debit.items.push({id:uid(),name:name,unitPrice:unit,qty:qty,category:cat,justified:justified});
-    else { var o=find(m.debit.items,id); o.name=name; o.unitPrice=unit; o.qty=qty; o.category=cat; o.justified=justified; }
+    if(isCardPayment && !cardPaymentTo){
+      toast("Pick which card this payment reduces"); return;
+    }
+    // Card payments must come from cash or a debit account — not another card.
+    if(isCardPayment && poolKind(m,paidWithVal)==="card"){
+      toast("Pay cards from cash or a debit account, not another card"); return;
+    }
+    // Safety check: can't pay down a card *with* that same card.
+    if(isCardPayment && paidWithVal===cardPaymentTo){
+      toast("A card can't pay itself - pick a different source"); return;
+    }
+    if(isNew) m.debit.items.push({id:uid(),name:name,unitPrice:unit,qty:qty,category:cat,justified:justified,paidWith:paidWithVal,cardPaymentTo:cardPaymentTo});
+    else {
+      var o=find(m.debit.items,id);
+      o.name=name; o.unitPrice=unit; o.qty=qty; o.category=cat; o.justified=justified;
+      o.paidWith=paidWithVal; o.cardPaymentTo=cardPaymentTo;
+      if(o.paymentMethod) delete o.paymentMethod;
+    }
+  }
+  else if(kind==="card"){
+    var cname=val("f_cardname");
+    var bb=num(val("f_basebal")), notes=val("f_cardnotes");
+    if(!cname){ toast("Name the card"); return; }
+    if(isNew){
+      m.current.cards.push({id:uid(),name:cname,baseBalance:bb,notes:notes});
+    } else {
+      var c=cardById(m,id);
+      c.name=cname; c.baseBalance=bb; c.notes=notes;
+    }
+  }
+  else if(kind==="debitAccount"){
+    var dname=val("f_dname");
+    var dbb=num(val("f_dbase")), dnotes=val("f_dnotes");
+    if(!dname){ toast("Name the account"); return; }
+    if(isNew){
+      m.current.debitAccounts.push({id:uid(),name:dname,baseBalance:dbb,notes:dnotes});
+    } else {
+      var d=debitAccountById(m,id);
+      d.name=dname; d.baseBalance=dbb; d.notes=dnotes;
+    }
   }
   else if(kind==="reconciliation"){
     var item=val("f_item"), status=val("f_status"), amount=num(val("f_amount"));
@@ -1521,7 +3385,7 @@ function categoryExists(m,name){
 function deleteEdit(kind,id,panel){
   var m=M();
   var maps={
-    creditSource:m.credit.sources, creditAccount:m.credit.accounts,
+    creditSource:m.credit.sources,
     debitItem:m.debit.items,
     reconciliation:m.debit.reconciliation, category:m.categories
   };
@@ -1538,6 +3402,19 @@ function deleteEdit(kind,id,panel){
     if(usedI>0){ toast("In use by "+usedI+" source"+(usedI===1?"":"s")+" - reassign first"); return; }
     if((m.incomeCategories||[]).length<=1){ toast("Keep at least one income category"); return; }
     m.incomeCategories=m.incomeCategories.filter(function(x){ return x.id!==id; });
+  } else if(kind==="card"){
+    // Refuse to delete if any entry references this card.
+    var usedC=(m.debit.items||[]).filter(function(it){
+      return paidWith(it)===id || it.cardPaymentTo===id;
+    }).length + (m.credit.sources||[]).filter(function(s){ return s.paidTo===id; }).length;
+    if(usedC>0){ toast("Card is used by "+usedC+" entr"+(usedC===1?"y":"ies")+" - reassign first"); return; }
+    m.current.cards=(m.current.cards||[]).filter(function(x){ return x.id!==id; });
+  } else if(kind==="debitAccount"){
+    var usedD=(m.debit.items||[]).filter(function(it){
+      return paidWith(it)===id;
+    }).length + (m.credit.sources||[]).filter(function(s){ return s.paidTo===id; }).length;
+    if(usedD>0){ toast("Account is used by "+usedD+" entr"+(usedD===1?"y":"ies")+" - reassign first"); return; }
+    m.current.debitAccounts=(m.current.debitAccounts||[]).filter(function(x){ return x.id!==id; });
   } else if(maps[kind]){
     var arr=maps[kind];
     for(var i=0;i<arr.length;i++){ if(arr[i].id===id){ arr.splice(i,1); break; } }
@@ -1557,11 +3434,21 @@ function saveMonth(id){
   } else {
     var src=M();
     var key=monthKey();
+    // Carry the Current pools forward at their live balances.
+    var srcCur = src.current || {cash:{baseBalance:0},debitAccounts:[],cards:[]};
+    var carriedCash = { baseBalance: cashLiveBalance(src) };
+    var carriedDebit = (srcCur.debitAccounts||[]).map(function(a){
+      return { id:uid(), name:a.name, baseBalance:debitAccountLiveBalance(src,a.id), notes:a.notes||"" };
+    });
+    var carriedCards = (srcCur.cards||[]).map(function(c){
+      return { id:uid(), name:c.name, baseBalance:cardLiveBalance(src,c.id), notes:c.notes||"" };
+    });
     state.months[key]={
       label:label,
       groups:(src.groups||[]).slice(),
       categories:(src.categories||[]).map(function(c){ return {id:uid(),name:c.name,group:c.group}; }),
       incomeCategories:(src.incomeCategories||[]).map(function(c){ return {id:uid(),name:c.name}; }),
+      current:{cash:carriedCash, debitAccounts:carriedDebit, cards:carriedCards},
       credit:{sources:[],accounts:[]},
       debit:{items:[],reconciliation:[]},
       loans:{total:0,entries:[]},
@@ -1581,6 +3468,71 @@ function deleteMonth(id){
   if(state.activeMonth===id) state.activeMonth=Object.keys(state.months)[0];
   save(); closeSheet(); render();
   toast("Month deleted");
+}
+
+/* Lets the user pick what kind of asset to add from the Assets FAB. */
+function openAssetAddSheet(){
+  function item(kind,panel,title,sub,iconPath){
+    var p=panel?(' data-panel="'+panel+'"'):"";
+    return '<div class="list-item" data-act="add" data-kind="'+kind+'"'+p+'>'+
+      '<div class="li-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="'+iconPath+'"/></svg></div>'+
+      '<div class="li-body"><div class="li-title">'+title+'</div><div class="li-sub">'+sub+'</div></div>'+
+      '<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>'+
+    '</div>';
+  }
+  openSheet(
+    '<div class="sheet-title">Add to Assets</div>'+
+    '<div class="sheet-desc">What would you like to add?</div>'+
+    item("assetEntry","loans","Loan Entry","Money owed by you, with notes","M3 12h18M3 12l4-4M3 12l4 4")+
+    item("assetEntry","savings","Savings Entry","Money set aside","M3 6h18v13H3zM3 10h18")+
+    item("assetEntry","investment","Investment Entry","Holdings that may grow","M3 17l6-6 4 4 7-7")+
+    item("assetEntry","collectable","Collectable Entry","Something owed to you","M12 4v16M4 12h16")+
+    '<div class="sheet-actions" style="margin-top:14px"><button class="btn btn-ghost" data-act="cancel">Cancel</button></div>'
+  );
+}
+
+/* Lets the user pick what kind of pool to add from the Current FAB. */
+function openCurrentAddSheet(){
+  function item(kind,title,sub,iconPath){
+    return '<div class="list-item" data-act="add" data-kind="'+kind+'">'+
+      '<div class="li-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="'+iconPath+'"/></svg></div>'+
+      '<div class="li-body"><div class="li-title">'+title+'</div><div class="li-sub">'+sub+'</div></div>'+
+      '<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>'+
+    '</div>';
+  }
+  openSheet(
+    '<div class="sheet-title">Add a Pool</div>'+
+    '<div class="sheet-desc">What kind of money holder are you adding?</div>'+
+    item("debitAccount","Debit Account","Checking, savings sub-account, etc.","M2 5h20v14H2zM2 10h20")+
+    item("card","Credit Card","Track current overdue, charges, payments","M2 6h20v12H2zM2 11h20")+
+    '<div class="sheet-actions" style="margin-top:14px"><button class="btn btn-ghost" data-act="cancel">Cancel</button></div>'
+  );
+}
+
+/* Adjusts a pool's base balance directly. */
+function saveAdjustPool(poolId, dir){
+  var m=M();
+  var amt=num(val("f_adj"));
+  if(isNaN(amt)){ toast("Enter a number"); return; }
+  if(dir==="set"){
+    // The user wants the LIVE balance to be exactly amt. Adjust base accordingly.
+    var live = poolId==="cash" ? cashLiveBalance(m) : debitAccountLiveBalance(m,poolId);
+    var diff = amt - live;
+    if(poolId==="cash") m.current.cash.baseBalance = num(m.current.cash.baseBalance) + diff;
+    else {
+      var d = debitAccountById(m,poolId);
+      d.baseBalance = num(d.baseBalance) + diff;
+    }
+  } else {
+    var sign = dir==="plus" ? 1 : -1;
+    if(poolId==="cash") m.current.cash.baseBalance = num(m.current.cash.baseBalance) + sign*amt;
+    else {
+      var d2 = debitAccountById(m,poolId);
+      d2.baseBalance = num(d2.baseBalance) + sign*amt;
+    }
+  }
+  save(); closeSheet(); render();
+  toast(dir==="set"?"Total updated":(dir==="plus"?"Added":"Subtracted"));
 }
 
 function openMonths(){
@@ -1699,13 +3651,21 @@ document.addEventListener("click",function(e){
   else if(act==="fab"){
     if(state.activeTab==="credit") openEdit("creditSource",null,null);
     else if(state.activeTab==="debit") openEdit("debitItem",null,null);
-    else if(state.activeTab==="assets") openEdit("assetEntry",null,"loans");
+    else if(state.activeTab==="assets") openAssetAddSheet();
+    else if(state.activeTab==="current") openCurrentAddSheet();
   }
   else if(act==="add"){ openEdit(el.dataset.kind,null,el.dataset.panel||null); }
   else if(act==="edit"){ openEdit(el.dataset.kind,el.dataset.id,el.dataset.panel||null); }
   else if(act==="save-edit"){ saveEdit(el.dataset.kind,el.dataset.id||null,el.dataset.panel||null); }
   else if(act==="delete-edit"){ deleteEdit(el.dataset.kind,el.dataset.id||null,el.dataset.panel||null); }
+  else if(act==="adjust-pool"){
+    // Pool +, -, or Set total. We piggy-back the openEdit dispatcher with kind=adjustPool,
+    // panel=poolId, and id=direction ("plus"/"minus"/"set").
+    openEdit("adjustPool", el.dataset.dir, el.dataset.pool);
+  }
+  else if(act==="save-adjust"){ saveAdjustPool(el.dataset.pool, el.dataset.dir); }
   else if(act==="debit-cat"){ debitFilter.cat=el.dataset.cat; render(); }
+  else if(act==="debit-pay"){ debitFilter.pay=el.dataset.pay; render(); }
   else if(act==="analysis-view"){ analysisView=el.dataset.view; render(); }
   else if(act==="pick-month"){
     state.activeMonth=el.dataset.id; state.activeTab="overview";

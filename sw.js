@@ -1,7 +1,7 @@
 /* Amar Balance Sheet - service worker
    Strategy: network-first for the app itself, so updates always apply.
    Falls back to cache only when there's no connection (offline support). */
-var CACHE = "amar-balance-sheet-v2";
+var CACHE = "amar-balance-sheet-v5";
 var ASSETS = [
   "./",
   "./index.html",
