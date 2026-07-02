@@ -3443,6 +3443,22 @@ function saveMonth(id){
     var carriedCards = (srcCur.cards||[]).map(function(c){
       return { id:uid(), name:c.name, baseBalance:cardLiveBalance(src,c.id), notes:c.notes||"" };
     });
+    // Carry Assets panels forward — loans, savings, investment, collectable are
+    // ongoing balances, not monthly transactions. Preserve total, entries, and
+    // (for investment) ROI. Give each entry a fresh id so months stay independent.
+    function carryPanel(panelKey, extraFields){
+      var src_p = src[panelKey] || {total:0, entries:[]};
+      var carried = {
+        total: num(src_p.total),
+        entries: (src_p.entries||[]).map(function(e){
+          return { id:uid(), label:e.label||"", value:num(e.value), notes:e.notes||"" };
+        })
+      };
+      if(extraFields){
+        for(var k in extraFields) carried[k] = extraFields[k];
+      }
+      return carried;
+    }
     state.months[key]={
       label:label,
       groups:(src.groups||[]).slice(),
@@ -3451,10 +3467,10 @@ function saveMonth(id){
       current:{cash:carriedCash, debitAccounts:carriedDebit, cards:carriedCards},
       credit:{sources:[],accounts:[]},
       debit:{items:[],reconciliation:[]},
-      loans:{total:0,entries:[]},
-      savings:{total:0,entries:[]},
-      investment:{total:0,roi:0,entries:[]},
-      collectable:{total:0,entries:[]}
+      loans:      carryPanel("loans"),
+      savings:    carryPanel("savings"),
+      investment: carryPanel("investment", {roi: num((src.investment||{}).roi)}),
+      collectable:carryPanel("collectable")
     };
     state.activeMonth=key;
     state.activeTab="overview";
